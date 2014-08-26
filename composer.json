@@ -13,7 +13,8 @@
     },
     "autoload": {
         "classmap": [
-            "src/migrations"
+            "src/migrations",
+            "src/Controllers"
         ],
         "psr-0": {
             "Joselfonseca\\ImageManager\\": "src/"
