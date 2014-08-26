@@ -20,14 +20,8 @@
                 </div>
                 <div class='col-lg-9'>
                     <h4>Select from library</h4>
-                    <div class='row'>
-                        @foreach($files as $f)
-                        <div class='col-lg-4'>
-                            <a href="javascript:void(0)" data-file-id='{{$f->id}}' class="thumbnail">
-                                <img src="{{action('showthumb', $f->id)}}" alt="">
-                            </a>
-                        </div>
-                        @endforeach
+                    <div id="image-loader">
+
                     </div>
                 </div>
             </div>
@@ -41,6 +35,18 @@
                 flash: '{{asset("/packages/joselfonseca/image-manager/assets/js/libs/plupload/js/Moxie.swf")}}',
                 silverlight: '{{asset("/packages/joselfonseca/image-manager/assets/js/libs/plupload/js/Moxie.xap")}}',
                 maxFileSize: '{{Config::get("image-manager::maxFileSize")}}'
+            });
+            $(function() {
+                window.ImageManager.getImages({
+                    imagesUrl: '{{action("ImageManagerImages")}}'
+                });
+                $(document).on('click', '.images-paginator>.pagination>li>a', function() {
+                    var $this = $(this);
+                    window.ImageManager.getImages({
+                        imagesUrl: $this.attr('href')
+                    });
+                    return false;
+                });
             });
         </script>
     </body>

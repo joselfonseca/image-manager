@@ -2,14 +2,22 @@
 
     window.ImageManager = {
         uploader: null,
+        caller: null,
+        SelectedFile: null,
+        colorbox: null,
         init: function() {
             window.ImageManager.uploader = null;
             $(document).on('click', '.fileManager', function() {
                 var $this = $(this);
+                window.ImageManagerCaller = $this;
                 $.colorbox({
                     href: $this.data('url'),
+                    open: true,
                     width: '100%',
-                    height: '100%'
+                    height: '100%',
+                    onClosed: function(a){
+                        window.ImageManager.uploader.destroy();
+                    }
                 });
             });
         },
@@ -53,12 +61,29 @@
                         
                     },
                     FileUploaded: function(up, file, response){
-                        var $response = $.parseJSON(response);
-                        console.log($response);
+                        var $response = $.parseJSON(response.response);
+                        window.ImageManager.renderFile($response.file);
                     }
                 }
             });
             window.ImageManager.uploader.init();
+        },
+        renderFile: function($file){
+            $('#images-container').prepend($file.html);
+        },
+        getImages: function(data){
+            $.get(data.imagesUrl, function(html){
+                $('#image-loader').html(html);
+            });
+        },
+        afterSelect: function(){
+            var $caller = window.ImageManagerCaller;
+            window.ImageManagerCaller = null;
+            $input = $caller.parents('.ImageManager').find('.inputFile');
+            $preview = $caller.parents('.ImageManager').find('.imageManagerImage');
+            $input.val(window.ImageManager.SelectedFile.id);
+            $preview.attr('src', window.ImageManager.SelectedFile.url).show();
+            window.ImageManager.SelectedFile = null;
         }
     };
 
@@ -67,7 +92,12 @@
             window.ImageManager.init();
         }
     });
-
-
+    
+    $(document).on('click', '[data-action="selected-file"]', function(){
+        var $this = $(this);
+        window.ImageManager.SelectedFile = {id: $this.data('file-id'), url : $this.data('preview-url')};
+        $.colorbox.close();
+        window.ImageManager.afterSelect();
+    });
 
 })($, window);

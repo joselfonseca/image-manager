@@ -23,4 +23,8 @@ Route::group(['before' => Config::get('image-manager::filter')], function() {
         'as' => 'ImageManagerUpload',
         'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@store'
     ]);
+    Route::get('image-manager-images', [
+        'as' => 'ImageManagerImages',
+        'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@getImages'
+    ]);
 });
