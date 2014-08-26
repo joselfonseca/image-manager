@@ -6,5 +6,5 @@
  */
 return [
     'filter' => ['admin_logged'],
-    'maxFileSize' => 10096 //Max upload file size
+    'maxFileSize' => 1000096 //Max upload file size
 ];

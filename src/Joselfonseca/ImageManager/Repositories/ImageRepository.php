@@ -75,7 +75,7 @@ class ImageRepository implements ImageRepositoryInterface {
     }
     
     public function getFiles(){
-        return $this->model->paginate(12);
+        return $this->model->orderBy('created_at', 'desc')->paginate(12);
     }
 
 }

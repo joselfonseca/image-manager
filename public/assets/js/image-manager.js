@@ -62,7 +62,7 @@
                     },
                     FileUploaded: function(up, file, response){
                         var $response = $.parseJSON(response.response);
-                        window.ImageManager.renderFile($response.file);
+                        window.ImageManager.getImages({imagesUrl: $response.file.urlAll});
                     }
                 }
             });

@@ -35,7 +35,7 @@ class ImageManagerFiles extends \Eloquent implements ImageDbStorageInterface{
             'thumb' => action('showthumb', $this->id),
             'size' => (int) $this->size,
             'date_uploaded' => $this->created_at->format('Y-m-d H:i:s'),
-            'html' => \View::make('image-manager::image')->with('file', $this)->render()
+            'urlAll' => action('ImageManagerImages')
         ];
     }
 
