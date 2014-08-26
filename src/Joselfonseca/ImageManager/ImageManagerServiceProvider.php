@@ -25,13 +25,24 @@ class ImageManagerServiceProvider extends ServiceProvider {
         
         AliasLoader::getInstance()->alias('ImageManager', 'Joselfonseca\ImageManager\ImageManager');
         
-        /** Chek for the folder **/
+        /** Check for the folder **/
+        define('IM_UPLOADPATH', app_path('storage/file_manager'));
         
-        if(!is_dir(app_path('storage/file_manager'))){
-            mkdir(app_path('storage/file_manager'));
-            chmod(app_path('storage/file_manager'), 0777);
+        if(!is_dir(IM_UPLOADPATH)){
+            mkdir(IM_UPLOADPATH);
+            chmod(IM_UPLOADPATH, 0777);
         }
         
+        /** bind Stuff **/
+        
+        \App::bind('Joselfonseca\ImageManager\Interfaces\ImageRepositoryInterface', 'Joselfonseca\ImageManager\Repositories\ImageRepository');
+        \App::bind('Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface', 'Joselfonseca\ImageManager\Models\ImageManagerFiles');
+        
+        /** register event listeners **/
+        //This may be use in the future. for now lets forget about it
+        //Event::listen('Joselfonseca\ImageManager.*', 'Joselfonseca\ImageManager\Listeners\EmailNotifier');
+        
+        /** include the routes **/
         require_once __DIR__.'/../../routes.php';
     }
 
