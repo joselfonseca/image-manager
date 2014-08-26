@@ -22,6 +22,7 @@
             });
         },
         initPlupload: function(data) {
+            console.log(window.ImageManager.uploader);
             window.ImageManager.uploader = new plupload.Uploader({
                 runtimes: 'html5,flash',
                 browse_button: 'pickfiles',
