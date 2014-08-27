@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>Image Manager</title>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
         <div class='container'>
@@ -29,13 +28,11 @@
         <script>
             window.ImageManagerData = {
                 url: '{{action("ImageManagerUpload")}}',
-                flash: '{{asset("/packages/joselfonseca/image-manager/assets/js/libs/plupload/js/Moxie.swf")}}',
-                silverlight: '{{asset("/packages/joselfonseca/image-manager/assets/js/libs/plupload/js/Moxie.xap")}}',
+                flash: '{{asset("/packages/joselfonseca/image-manager/vendors/plupload/Moxie.swf")}}',
+                silverlight: '{{asset("/packages/joselfonseca/image-manager/vendors/plupload/Moxie.xap")}}',
                 maxFileSize: '{{Config::get("image-manager::maxFileSize")}}',
                 imagesUrl: '{{action("ImageManagerImages")}}'
             };
         </script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/packages/joselfonseca/image-manager/assets/js/libs/plupload/js/plupload.full.min.js"></script>
     </body>
 </html>
