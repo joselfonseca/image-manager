@@ -6,7 +6,6 @@
         SelectedFile: null,
         colorbox: null,
         init: function() {
-            window.ImageManager.uploader = null;
             $(document).on('click', '.fileManager', function() {
                 var $this = $(this);
                 window.ImageManagerCaller = $this;
@@ -15,23 +14,25 @@
                     open: true,
                     width: '100%',
                     height: '100%',
-                    onClosed: function(a){
-                        window.ImageManager.uploader.destroy();
+                    onComplete: function() {
+                        window.ImageManager.initPopUp();
                     }
                 });
             });
         },
-        initPlupload: function(data) {
-            console.log(window.ImageManager.uploader);
-            window.ImageManager.uploader = new plupload.Uploader({
+        initPlupload: function() {
+            if (typeof (window.Uploader) !== "undefined") {
+                window.Uploader.destroy();
+            }
+            window.Uploader = new plupload.Uploader({
                 runtimes: 'html5,flash',
                 browse_button: 'pickfiles',
                 container: document.getElementById('container-upload'),
-                url: data.url,
-                flash_swf_url: data.flash,
-                silverlight_xap_url: data.silverlight,
+                url: window.ImageManagerData.url,
+                flash_swf_url: window.ImageManagerData.flash,
+                silverlight_xap_url: window.ImageManagerData.silverlight,
                 filters: {
-                    max_file_size: data.maxFileSize,
+                    max_file_size: window.ImageManagerData.maxFileSize,
                     mime_types: [
                         {
                             title: "Image files",
@@ -39,14 +40,14 @@
                         }
                     ]
                 },
-                resize:{
+                resize: {
                     quality: 85
                 },
                 init: {
                     PostInit: function() {
                         document.getElementById('filelist').innerHTML = '';
                         document.getElementById('uploadfiles').onclick = function() {
-                            window.ImageManager.uploader.start();
+                            window.Uploader.start();
                             return false;
                         };
                     },
@@ -59,25 +60,35 @@
                         document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
                     },
                     Error: function(up, err) {
-                        
+
                     },
-                    FileUploaded: function(up, file, response){
+                    FileUploaded: function(up, file, response) {
                         var $response = $.parseJSON(response.response);
                         window.ImageManager.getImages({imagesUrl: $response.file.urlAll});
                     }
                 }
             });
-            window.ImageManager.uploader.init();
+            window.Uploader.init();
         },
-        renderFile: function($file){
+        initPopUp: function() {
+            if ($('#image-loader').length > 0) {
+                window.ImageManager.getImages({
+                    imagesUrl: window.ImageManagerData.imagesUrl
+                });
+            }
+            if ($('#pickfiles').length > 0) {
+                window.ImageManager.initPlupload();
+            }
+        },
+        renderFile: function($file) {
             $('#images-container').prepend($file.html);
         },
-        getImages: function(data){
-            $.get(data.imagesUrl, function(html){
+        getImages: function(data) {
+            $.get(data.imagesUrl, function(html) {
                 $('#image-loader').html(html);
             });
         },
-        afterSelect: function(){
+        afterSelect: function() {
             var $caller = window.ImageManagerCaller;
             window.ImageManagerCaller = null;
             $input = $caller.parents('.ImageManager').find('.inputFile');
@@ -89,16 +100,24 @@
     };
 
     $(function() {
-        if($('.fileManager').length > 0){
+        if ($('.fileManager').length > 0) {
             window.ImageManager.init();
         }
     });
-    
-    $(document).on('click', '[data-action="selected-file"]', function(){
+
+    $(document).on('click', '[data-action="selected-file"]', function() {
         var $this = $(this);
-        window.ImageManager.SelectedFile = {id: $this.data('file-id'), url : $this.data('preview-url')};
+        window.ImageManager.SelectedFile = {id: $this.data('file-id'), url: $this.data('preview-url')};
         $.colorbox.close();
         window.ImageManager.afterSelect();
+    });
+
+    $(document).on('click', '.images-paginator>.pagination>li>a', function() {
+        var $this = $(this);
+        window.ImageManager.getImages({
+            imagesUrl: $this.attr('href')
+        });
+        return false;
     });
 
 })($, window);

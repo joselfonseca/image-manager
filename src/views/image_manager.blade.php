@@ -26,29 +26,16 @@
                 </div>
             </div>
         </div>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/packages/joselfonseca/image-manager/assets/js/libs/plupload/js/plupload.full.min.js"></script>
-        <script type="text/javascript" src="/packages/joselfonseca/image-manager/assets/js/image-manager.js"></script>
         <script>
-            console.log(window.ImageManager.uploader);
-            window.ImageManager.initPlupload({
+            window.ImageManagerData = {
                 url: '{{action("ImageManagerUpload")}}',
                 flash: '{{asset("/packages/joselfonseca/image-manager/assets/js/libs/plupload/js/Moxie.swf")}}',
                 silverlight: '{{asset("/packages/joselfonseca/image-manager/assets/js/libs/plupload/js/Moxie.xap")}}',
-                maxFileSize: '{{Config::get("image-manager::maxFileSize")}}'
-            });
-            $(function() {
-                window.ImageManager.getImages({
-                    imagesUrl: '{{action("ImageManagerImages")}}'
-                });
-                $(document).on('click', '.images-paginator>.pagination>li>a', function() {
-                    var $this = $(this);
-                    window.ImageManager.getImages({
-                        imagesUrl: $this.attr('href')
-                    });
-                    return false;
-                });
-            });
+                maxFileSize: '{{Config::get("image-manager::maxFileSize")}}',
+                imagesUrl: '{{action("ImageManagerImages")}}'
+            };
         </script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/packages/joselfonseca/image-manager/assets/js/libs/plupload/js/plupload.full.min.js"></script>
     </body>
 </html>
