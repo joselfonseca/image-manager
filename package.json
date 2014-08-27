@@ -1,0 +1,15 @@
+{
+    "name": "Laravel-image-manager",
+    "version": "1.0.0",
+    "description": "Easy image management for laravel",
+    "dependencies": {},
+    "author": "Jose Luis Fonseca",
+    "devDependencies": {
+        "gulp": "^3.8.7",
+        "gulp-concat": "^2.3.4",
+        "gulp-less": "^1.3.5",
+        "gulp-sourcemaps": "^1.1.1",
+        "gulp-rename": "~1.2.0",
+        "gulp-uglify": "~0.3.1"
+    }
+}
