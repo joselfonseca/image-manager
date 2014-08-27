@@ -27,4 +27,8 @@ Route::group(['before' => Config::get('image-manager::filter')], function() {
         'as' => 'ImageManagerImages',
         'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@getImages'
     ]);
+    Route::get('image-manager/delete/{id}',[
+        'as' => 'ImageManagerDelete',
+        'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@delete'
+    ]);
 });

@@ -14,4 +14,6 @@ interface ImageRepositoryInterface {
     
     public function getFiles();
     
+    public function DeleteFile($command);
+    
 }

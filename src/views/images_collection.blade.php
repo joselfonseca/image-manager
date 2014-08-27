@@ -1,9 +1,13 @@
 <div class='row' id="images-container">
     @foreach($files as $f)
-    <div class='col-lg-4'>
-        <a href="javascript:void(0)" data-file-id='{{$f->id}}' data-preview-url="{{action('showthumb', $f->id)}}" data-action="selected-file" class="thumbnail">
+    <div class='col-lg-4' id="imageManager_{{$f->id}}">
+        <div class="thumbnail">
             <img src="{{action('showthumb', $f->id)}}" alt="">
-        </a>
+            <div class="caption">
+                <button class="btn btn-default" data-file-id='{{$f->id}}' data-preview-url="{{action('showthumb', $f->id)}}" data-action="selected-file"><i class="fa fa-check-circle"></i> Use</button>
+                <button class="btn btn-danger" data-file-id='{{$f->id}}' data-delete-url="{{action('ImageManagerDelete', $f->id)}}" data-action="delete-file"><i class="fa fa-trash-o"></i> Delete</button>
+            </div>
+        </div>
     </div>
     @endforeach
 </div>

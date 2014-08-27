@@ -3,7 +3,6 @@
 namespace Joselfonseca\ImageManager\Models;
 
 use Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface;
-
 use Laracasts\Commander\Events\EventGenerator;
 use Joselfonseca\ImageManager\Commands\UploadFile\Events\FileWasSavedToDb;
 
@@ -12,21 +11,24 @@ use Joselfonseca\ImageManager\Commands\UploadFile\Events\FileWasSavedToDb;
  *
  * @author desarrollo
  */
-class ImageManagerFiles extends \Eloquent implements ImageDbStorageInterface{
-    
+class ImageManagerFiles extends \Eloquent implements ImageDbStorageInterface {
+
     protected $table = 'image_manager_files';
-    
     protected $fillable = ['name', 'originalName', 'type', 'path', 'size'];
-    
+
     use EventGenerator;
-    
+
     public function saveFileToDb($file) {
         $f = $this->create($file);
         $f->raise(new FileWasSavedToDb($f));
         return $f;
     }
-    
-    public function getFileInfo(){
+
+    public function getFileById($id) {
+        return $this->findOrFail($id);
+    }
+
+    public function getFileInfo() {
         return [
             'name' => $this->name,
             'originalName' => $this->originalName,
@@ -37,6 +39,10 @@ class ImageManagerFiles extends \Eloquent implements ImageDbStorageInterface{
             'date_uploaded' => $this->created_at->format('Y-m-d H:i:s'),
             'urlAll' => action('ImageManagerImages')
         ];
+    }
+
+    public function DeleteFile() {
+        return $this->delete();
     }
 
 }

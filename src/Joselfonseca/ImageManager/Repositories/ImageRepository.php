@@ -8,8 +8,11 @@ use Joselfonseca\ImageManager\Exceptions\AlocateFileException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laracasts\Commander\Events\EventGenerator;
 use Joselfonseca\ImageManager\Commands\UploadFile\Events\FileWasSavedToDisc;
+use Joselfonseca\ImageManager\Commands\DeleteFile\Events\FileWasRemovedFromDisc;
+use Joselfonseca\ImageManager\Commands\DeleteFile\Events\FileWasRemovedFromDb;
 /** Image Manipulation * */
 use Intervention\Image\ImageManagerStatic as Image;
+use Joselfonseca\ImageManager\Exceptions\ModelNotFoundException as JoseModelNotFoundException;
 
 /**
  * Description of ImageRepository
@@ -23,6 +26,7 @@ class ImageRepository implements ImageRepositoryInterface {
     private $model;
     private $destination = IM_UPLOADPATH;
     private $command;
+    private $file;
 
     public function __construct(ImageDbStorageInterface $model) {
         $this->model = $model;
@@ -73,9 +77,31 @@ class ImageRepository implements ImageRepositoryInterface {
         }
         return $image->response();
     }
-    
-    public function getFiles(){
+
+    public function getFiles() {
         return $this->model->orderBy('created_at', 'desc')->paginate(12);
+    }
+
+    public function DeleteFile($comand) {
+        try {
+            $this->file = $this->model->getFileById($comand->id);
+        } catch (ModelNotFoundException $e) {
+            throw new JoseModelNotFoundException;
+        }
+        $this->_removeFileFromDisk();
+        $this->_removeFileFromDb();
+    }
+    
+    private function _removeFileFromDisk(){
+        $file = $this->destination.'/'.$this->file->path;
+        unlink($file);
+        $this->raise(new FileWasRemovedFromDisc($this->file));
+    }
+    
+    private function _removeFileFromDb(){
+        $file = $this->file->getFileInfo();
+        $this->file->DeleteFile();
+        $this->raise(new FileWasRemovedFromDb($file));
     }
 
 }

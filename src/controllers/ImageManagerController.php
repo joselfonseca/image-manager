@@ -4,10 +4,12 @@ namespace Joselfonseca\ImageManager\Controllers;
 
 use Joselfonseca\ImageManager\Commands\UploadFile\UploadFileCommand;
 use Joselfonseca\ImageManager\Commands\RenderFile\RenderFileCommand;
+use Joselfonseca\ImageManager\Commands\DeleteFile\DeleteFileCommand;
 use Laracasts\Commander\CommanderTrait;
 /** exceptions * */
 use Joselfonseca\ImageManager\Exceptions\ValidationExeption;
 use Joselfonseca\ImageManager\Exceptions\AlocateFileException;
+use Joselfonseca\ImageManager\Exceptions\ModelNotFoundException as JoseModelNotFoundException;
 
 use Joselfonseca\ImageManager\Interfaces\ImageRepositoryInterface;
 
@@ -55,6 +57,16 @@ class ImageManagerController extends \Controller {
         }
         $return = ['file' => $file->getFileInfo()];
         return \Response::json($return);
+    }
+    
+    public function delete($id){
+        try{
+            $this->execute(DeleteFileCommand::class, ['id' => $id]);
+        }catch(JoseModelNotFoundException $e){
+            $return = ['errorCode' => 'ModelNotFound', 'message' => 'The file does not exsist.'];
+            return \Response::json($return, 404);
+        }
+        return \Response::json(['status' => true]);
     }
 
 }

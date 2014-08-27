@@ -120,4 +120,16 @@
         return false;
     });
 
+    $(document).on('click', '[data-action="delete-file"]', function() {
+        var $this = $(this);
+        $.get($this.data('delete-url'), function(json) {
+            if (json.status === true) {
+                $('#imageManager_' + $this.data('file-id')).remove();
+            } else {
+                console.log(json.message);
+                
+            }
+        }, 'json');
+    });
+
 })($, window);
