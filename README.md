@@ -72,3 +72,16 @@ Please report Bugs!
 ===============================
 
 This is a new component that needs PR and bug report, use the repo to raise any issues.
+
+To Do
+================================
+```
+    1. Unit Testing
+    2. Image resizing and cropping
+    3. Anything else cool!
+```
+
+Thanks!
+================================
+
+I would like to thank anyone that uses the component and report bugs. This will always be a work in progress.
