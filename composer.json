@@ -2,6 +2,7 @@
     "name": "joselfonseca/image-manager",
     "description": "Simple image manager for laravel apps",
     "keywords": ["laravel", "twitter Bootstrap", "plupload", "images management"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Joselfonseca",
