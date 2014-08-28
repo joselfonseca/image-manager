@@ -1,6 +1,6 @@
 {
     "name": "joselfonseca/image-manager",
-    "description": "",
+    "description": "Simple image manager for laravel apps",
     "authors": [
         {
             "name": "Joselfonseca",
