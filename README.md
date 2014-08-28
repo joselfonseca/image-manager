@@ -1,4 +1,4 @@
-Laravel image Manager package
+Laravel image Manager package 
 =============================
 
 A little Image Manager to use in forms.
