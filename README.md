@@ -50,10 +50,12 @@ Make sure you have a field in your database to store the image id and inside you
 ```
 
 Parameters
+```
     - text: the text for the button
     - class: the class to apply to the button
     - field_name: the field name for the image selected, this creates a hidden input with the field_name to get the id of the image selected when you post the form
     - default: the id for the image to be selected by default
+```
 
 How to render an image?
 
