@@ -84,4 +84,4 @@ To Do
 Thanks!
 ================================
 
-I would like to thank anyone that uses the component and report bugs. This will always be a work in progress.
+I would like to thank anyone who uses the component and report bugs. This will always be a work in progress.
