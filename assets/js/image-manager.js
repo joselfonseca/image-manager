@@ -86,6 +86,11 @@
         getImages: function(data) {
             $.get(data.imagesUrl, function(html) {
                 $('#image-loader').html(html);
+                $('[data-toggle="popover"]').popover({
+                    html: true,
+                    trigger: 'focus'
+                    
+                });
             });
         },
         afterSelect: function() {
