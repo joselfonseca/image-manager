@@ -21,12 +21,12 @@ In your composer.json file add:
 
 Run `composer update`
 
-Then run the migration
-`php artisan migrate --package=joselfonseca/image-manager`
-
 Add the service provider
 
 `'Joselfonseca\ImageManager\ImageManagerServiceProvider'`
+
+Then run the migration
+`php artisan migrate --package=joselfonseca/image-manager`
 
 Then public the assets.
 
@@ -59,7 +59,7 @@ Parameters
 
 How to render an image?
 
-To render an image t you can add to the src the route `action('showthumb', $id)`
+To render an image you can add to the src the route `action('showthumb', $id)`
 
 ```php
 // this will show a thumb
