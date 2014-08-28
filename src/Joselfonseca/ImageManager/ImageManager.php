@@ -13,7 +13,7 @@ class ImageManager {
         $text = ($params['text']) ? $params['text'] : 'Select File';
         $class = ($params['class']) ? $params['class'] : 'btn btn-default';
         $field_name = (isset($params['field_name'])) ? $params['field_name'] : 'image';
-        $default = (isset($params['default'])) ? $params['default'] : null;
+        $default = (isset($params['default'])) ? $params['default'] : \Input::old($params['field_name']);;
         if(!empty($default)){
             $image = '<img src="'.action('showthumb', $default).'" class="imageManagerImage" />';
         }else{
