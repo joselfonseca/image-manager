@@ -7,7 +7,9 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 
 var paths = {
-    less: [],
+    less: [
+        './assets/less/imagemanager.less'
+    ],
     scripts: [
     './assets/vendors/plupload/js/plupload.full.min.js',
     './assets/vendors/colorbox/jquery.colorbox-min.js',
@@ -24,7 +26,7 @@ gulp.task('less', function () {
         paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./public/assets/css'));
+    .pipe(gulp.dest('./public/css'));
 });
 
 /** 
@@ -46,7 +48,7 @@ gulp.task('compress', function() {
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
-    //gulp.watch(paths.less, ['less']);
+    gulp.watch(paths.less, ['less']);
     gulp.watch(paths.scripts, ['compress']);
 });
-gulp.task('default', ['watch', 'compress']);
+gulp.task('default', ['watch', 'compress', 'less']);
