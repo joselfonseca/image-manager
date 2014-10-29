@@ -35,6 +35,7 @@ Then public the assets.
 Finally reference the assets in the layout
 
 ```html
+<link href="/packages/joselfonseca/image-manager/css/imagemanager.css" rel="stylesheet">
 <link href="/packages/joselfonseca/image-manager/vendors/colorbox/colorbox.css" rel="stylesheet">
 <script src="/packages/joselfonseca/image-manager/js/imageManager.min.js"></script>
 ```
