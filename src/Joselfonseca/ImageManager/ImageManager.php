@@ -29,6 +29,10 @@ class ImageManager {
     public function resize($id, $width = null, $height = null){
         return $this->execute(RenderFileCommand::class, ['id' => $id, 'width' => $width, 'height' => $height]);
     }
+    
+    public function imageInfo($id){
+        return $this->ImageRepository->getFileModel($id);
+    }
 
     public static function getField($params) {
         $text = ($params['text']) ? $params['text'] : 'Select File';

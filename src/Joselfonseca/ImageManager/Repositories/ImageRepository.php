@@ -103,5 +103,9 @@ class ImageRepository implements ImageRepositoryInterface {
         $this->file->DeleteFile();
         $this->raise(new FileWasRemovedFromDb($file));
     }
+    
+    public function getFileModel($id){
+        return $this->model->getFileById($id);
+    }
 
 }
