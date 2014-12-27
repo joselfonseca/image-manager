@@ -18,7 +18,7 @@ Installation
 In your composer.json file add:
 
 ```js
-"joselfonseca/image-manager" : "dev-master"
+"joselfonseca/image-manager" : "1.0.*"
 ```
 
 Run `composer update`
@@ -37,9 +37,9 @@ Then public the assets.
 Finally reference the assets in the layout
 
 ```html
-<link href="/packages/joselfonseca/image-manager/css/imagemanager.css" rel="stylesheet">
-<link href="/packages/joselfonseca/image-manager/vendors/colorbox/colorbox.css" rel="stylesheet">
-<script src="/packages/joselfonseca/image-manager/js/imageManager.min.js"></script>
+<link href="{{asset('packages/joselfonseca/image-manager/css/imagemanager.css')}}" rel="stylesheet">
+<link href="{{asset('packages/joselfonseca/image-manager/vendors/colorbox/colorbox.css')}}" rel="stylesheet">
+<script src="{{asset('packages/joselfonseca/image-manager/js/imageManager.min.js')}}"></script>
 ```
 
 Usage
@@ -69,6 +69,23 @@ To render an image you can add to the src the route `action('showthumb', $id)`
 <img src="{{action('showthumb', $default)}}" />
 // this the full image
 <img src="{{action('media', $default)}}" />
+// this the full image resized by with
+<img src="{{action('media', ['id' => $default, 'width' => 300])}}" />
+// this the full image resized by with and height
+<img src="{{action('media', ['id' => $default, 'width' => 300, 'heigth' => 300])}}" />
+```
+
+API
+===============================
+
+You can use the following methods with out the image selector modal.
+
+```php
+
+ImageManager::doUpload(); //this method receives the input file like Input::file('file')
+ImageManager::resize($id, $width = null, $height = null); //this method will render the image according to the parameters
+ImageManager::imageInfo($id); //this method will return an instance of Joselfonseca\ImageManager\Models\ImageManagerFiles which is the eloquent model for the image_manager_files table for the id given.
+
 ```
 
 Please report Bugs!

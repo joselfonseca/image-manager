@@ -11,8 +11,8 @@ use Joselfonseca\ImageManager\Commands\UploadFile\Events\FileWasSavedToDisc;
 use Joselfonseca\ImageManager\Commands\DeleteFile\Events\FileWasRemovedFromDisc;
 use Joselfonseca\ImageManager\Commands\DeleteFile\Events\FileWasRemovedFromDb;
 /** Image Manipulation * */
-use Intervention\Image\ImageManagerStatic as Image;
 use Joselfonseca\ImageManager\Exceptions\ModelNotFoundException as JoseModelNotFoundException;
+use Joselfonseca\ImageManager\ImageRender;
 
 /**
  * Description of ImageRepository
@@ -53,29 +53,14 @@ class ImageRepository implements ImageRepositoryInterface {
 
     public function renderImage($command) {
         $this->command = $command;
+        $render = new ImageRender();
         try {
             $i = $this->model->findOrFail($this->command->id);
-            $image = Image::make($this->destination . '/' . $i->path);
+            $render->setProperties($this->destination, $i->path, $this->command->width, $this->command->height);
         } catch (ModelNotFoundException $e) {
-            $image = Image::canvas(800, 800, '#cecece');
+            $render->setProperties(null, null, $this->command->width, $this->command->height);
         }
-        if (!empty($this->command->width) && empty($this->command->height)) {
-            $image->resize($this->command->width, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-        } elseif (empty($this->command->width) && !empty($this->command->height)) {
-            $image->resize(null, $this->command->height, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-        } elseif (!empty($this->command->width) && !empty($this->command->height)) {
-            $image->resize($this->command->width, $this->command->height, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-        }
-        return $image->response();
+        return $render->render();
     }
 
     public function getFiles() {
@@ -91,20 +76,20 @@ class ImageRepository implements ImageRepositoryInterface {
         $this->_removeFileFromDisk();
         $this->_removeFileFromDb();
     }
-    
-    private function _removeFileFromDisk(){
-        $file = $this->destination.'/'.$this->file->path;
+
+    private function _removeFileFromDisk() {
+        $file = $this->destination . '/' . $this->file->path;
         unlink($file);
         $this->raise(new FileWasRemovedFromDisc($this->file));
     }
-    
-    private function _removeFileFromDb(){
+
+    private function _removeFileFromDb() {
         $file = $this->file->getFileInfo();
         $this->file->DeleteFile();
         $this->raise(new FileWasRemovedFromDb($file));
     }
-    
-    public function getFileModel($id){
+
+    public function getFileModel($id) {
         return $this->model->getFileById($id);
     }
 

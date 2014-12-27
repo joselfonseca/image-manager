@@ -8,11 +8,20 @@ Route::get('image-manager/view/{id}/thumb', [
     'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@thumb'
 ]);
 
-
 Route::get('image-manager/view/{id}', [
     'as' => 'media',
     'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@full'
 ]);
+
+Route::get('image-manager/view/{id}/{width}', [
+    'as' => 'media',
+    'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@full'
+])->where('width', '[0-9]+');
+
+Route::get('image-manager/view/{id}/{width}/{height}', [
+    'as' => 'media',
+    'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@full'
+])->where('width', '[0-9]+')->where('height', '[0-9]+');
 
 Route::group(['before' => Config::get('image-manager::filter')], function() {
     Route::get('image-manager', [

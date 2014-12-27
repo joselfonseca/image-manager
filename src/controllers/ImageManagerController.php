@@ -41,8 +41,8 @@ class ImageManagerController extends \Controller {
         return $this->execute(RenderFileCommand::class, ['id' => $id, 'width' => 250, 'height' => 250]);
     }
     
-    public function full($id){
-        return $this->execute(RenderFileCommand::class, ['id' => $id, 'width' => null, 'height' => null]);
+    public function full($id, $width = null, $height = null){
+        return $this->execute(RenderFileCommand::class, ['id' => $id, 'width' => $width, 'height' => $height]);
     }
 
     public function store() {
