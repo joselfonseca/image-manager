@@ -8,6 +8,7 @@ Route::get('image-manager/view/{id}/thumb', [
     'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@thumb'
 ]);
 
+
 Route::get('image-manager/view/{id}', [
     'as' => 'media',
     'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@full'
