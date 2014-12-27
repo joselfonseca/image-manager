@@ -1,7 +1,9 @@
 Laravel image Manager package 
 =============================
 
-A little Image Manager to use in forms.
+[![Build Status](https://travis-ci.org/joselfonseca/image-manager.svg?branch=master)](https://travis-ci.org/joselfonseca/image-manager)
+
+A little Image Manager to use in forms and API's.
 
 Requirements
 ============================
