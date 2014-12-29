@@ -31,37 +31,35 @@ class ImageRender {
         if (empty($this->path)) {
             $this->image = \Image::cache(function($image) {
                         if (!empty($this->width) && empty($this->height)) {
-                            $image->canvas(800, 800, $this->bgcolor)->resize($this->width, null, function ($constraint) {
+                            return $image->canvas(800, 800, $this->bgcolor)->resize($this->width, null, function ($constraint) {
                                 $constraint->aspectRatio();
                                 $constraint->upsize();
                             });
                         } elseif (empty($this->width) && !empty($this->height)) {
-                            $image->canvas(800, 800, $this->bgcolor)->resize(null, $this->height, function ($constraint) {
+                            return $image->canvas(800, 800, $this->bgcolor)->resize(null, $this->height, function ($constraint) {
                                 $constraint->aspectRatio();
                                 $constraint->upsize();
                             });
-                        } elseif (!empty($this->width) && !empty($this->height)) {
-                            $image->canvas(800, 800, $this->bgcolor)->resize($this->width, $this->height);
+                        } else{
+                            return $image->canvas(800, 800, $this->bgcolor);
                         }
-                        return $image;
-                    }, null, true);
+                    }, 10, true);
         } else {
             $this->image = \Image::cache(function($image) {
                         if (!empty($this->width) && empty($this->height)) {
-                            $image->make($this->destination . '/' . $this->path)->resize($this->width, null, function ($constraint) {
+                            return $image->make($this->destination . '/' . $this->path)->resize($this->width, null, function ($constraint) {
                                 $constraint->aspectRatio();
                                 $constraint->upsize();
                             });
                         } elseif (empty($this->width) && !empty($this->height)) {
-                            $image->make($this->destination . '/' . $this->path)->resize(null, $this->height, function ($constraint) {
+                            return $image->make($this->destination . '/' . $this->path)->resize(null, $this->height, function ($constraint) {
                                 $constraint->aspectRatio();
                                 $constraint->upsize();
                             });
-                        } elseif (!empty($this->width) && !empty($this->height)) {
-                            $image->make($this->destination . '/' . $this->path)->resize($this->width, $this->height);
+                        } else{
+                            return $image->make($this->destination . '/' . $this->path);
                         }
-                        return $image;
-                    }, null, true);
+                    }, 10, true);
         }
     }
 
@@ -69,11 +67,11 @@ class ImageRender {
         if (empty($this->path)) {
             $this->image = \Image::cache(function($image) {
                         return $image->canvas(800, 800, $this->bgcolor)->resizeCanvas($this->width, $this->height, $this->position, false, $this->bgcolor);
-                    }, null, true);
+                    }, 10, true);
         } else {
             $this->image = \Image::cache(function($image) {
                         return $image->make($this->destination . '/' . $this->path)->resizeCanvas($this->width, $this->height, $this->position, false, $this->bgcolor);
-                    }, null, true);
+                    }, 10, true);
         }
     }
 
