@@ -12,7 +12,7 @@ A little Image Manager to use in forms and API's.
 Requirements
 ============================
     1. Jquery
-    2. Twitter Bootstrap
+    2. Bootstrap 3
 
 The package will insert colorbox JS and Plupload JS, make sure you import colorbox.css to your templates.
 
