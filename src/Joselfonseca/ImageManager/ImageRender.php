@@ -18,7 +18,6 @@ class ImageRender {
     protected $bgcolor;
     protected $position;
 
-
     protected function resize() {
         if (empty($this->canvas)) {
             $this->resizeNormal();
@@ -26,21 +25,24 @@ class ImageRender {
             $this->resizeCanvas();
         }
     }
+
     // This is Dirty, will come back to it later
     protected function resizeNormal() {
         if (empty($this->path)) {
             $this->image = \Image::cache(function($image) {
                         if (!empty($this->width) && empty($this->height)) {
                             return $image->canvas(800, 800, $this->bgcolor)->resize($this->width, null, function ($constraint) {
-                                $constraint->aspectRatio();
-                                $constraint->upsize();
-                            });
+                                        $constraint->aspectRatio();
+                                        $constraint->upsize();
+                                    });
                         } elseif (empty($this->width) && !empty($this->height)) {
                             return $image->canvas(800, 800, $this->bgcolor)->resize(null, $this->height, function ($constraint) {
-                                $constraint->aspectRatio();
-                                $constraint->upsize();
-                            });
-                        } else{
+                                        $constraint->aspectRatio();
+                                        $constraint->upsize();
+                                    });
+                        } elseif (!empty($this->width) && !empty($this->height)) {
+                            return $image->canvas(800, 800, $this->bgcolor)->resize($this->width, $this->height);
+                        } else {
                             return $image->canvas(800, 800, $this->bgcolor);
                         }
                     }, 10, true);
@@ -48,15 +50,17 @@ class ImageRender {
             $this->image = \Image::cache(function($image) {
                         if (!empty($this->width) && empty($this->height)) {
                             return $image->make($this->destination . '/' . $this->path)->resize($this->width, null, function ($constraint) {
-                                $constraint->aspectRatio();
-                                $constraint->upsize();
-                            });
+                                        $constraint->aspectRatio();
+                                        $constraint->upsize();
+                                    });
                         } elseif (empty($this->width) && !empty($this->height)) {
                             return $image->make($this->destination . '/' . $this->path)->resize(null, $this->height, function ($constraint) {
-                                $constraint->aspectRatio();
-                                $constraint->upsize();
-                            });
-                        } else{
+                                        $constraint->aspectRatio();
+                                        $constraint->upsize();
+                                    });
+                        } elseif (!empty($this->width) && !empty($this->height)) {
+                            return $image->make($this->destination . '/' . $this->path)->resize($this->width, $this->height);
+                        } else {
                             return $image->make($this->destination . '/' . $this->path);
                         }
                     }, 10, true);
