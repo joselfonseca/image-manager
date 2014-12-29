@@ -77,6 +77,8 @@ To render an image you can add to the src the route `action('showthumb', $id)`
 <img src="{{action('media', ['id' => $default, 'width' => 300])}}" />
 // this the full image resized by with and height
 <img src="{{action('media', ['id' => $default, 'width' => 300, 'heigth' => 300])}}" />
+// this the full image resized by with and height in the canvas, not the image
+<img src="{{action('media', ['id' => $default, 'width' => 300, 'heigth' => 300, 'canvas' => 'canvas'])}}" />
 ```
 
 API
