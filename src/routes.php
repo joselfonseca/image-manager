@@ -23,6 +23,11 @@ Route::get('image-manager/view/{id}/{width}/{height}', [
     'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@full'
 ])->where('width', '[0-9]+')->where('height', '[0-9]+');
 
+Route::get('image-manager/view/{id}/{width}/{height}/{canvas}', [
+    'as' => 'media',
+    'uses' => '\\Joselfonseca\\ImageManager\\Controllers\\ImageManagerController@full'
+])->where('width', '[0-9]+')->where('height', '[0-9]+')->where('canvas', 'canvas');
+
 Route::group(['before' => Config::get('image-manager::filter')], function() {
     Route::get('image-manager', [
         'as' => 'ImageManager',

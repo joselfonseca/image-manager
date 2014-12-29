@@ -14,11 +14,14 @@ class RenderFileCommand {
     public $width;
     
     public $height;
+    
+    public $canvas;
 
-    public function __construct($id, $width, $height) {
+    public function __construct($id, $width, $height, $canvas = false) {
         $this->id = $id;
         $this->width = $width;
         $this->height = $height;
+        $this->canvas = $canvas;
     }
 
 }
