@@ -36,10 +36,6 @@ class ImageManagerServiceProvider extends ServiceProvider {
         \App::bind('Joselfonseca\ImageManager\Interfaces\ImageRepositoryInterface', 'Joselfonseca\ImageManager\Repositories\ImageRepository');
         \App::bind('Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface', 'Joselfonseca\ImageManager\Models\ImageManagerFiles');
 
-        /** register event listeners * */
-        //This may be use in the future. for now lets forget about it
-        //Event::listen('Joselfonseca\ImageManager.*', 'Joselfonseca\ImageManager\Listeners\EmailNotifier');
-
         /** include the routes * */
         require_once __DIR__ . '/../../routes.php';
     }

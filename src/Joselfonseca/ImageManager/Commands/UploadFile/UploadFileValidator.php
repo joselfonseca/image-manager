@@ -12,7 +12,7 @@ use Joselfonseca\ImageManager\Exceptions\ValidationExeption;
  */
 class UploadFileValidator {
 
-    public function Validate($command) {
+    public function validate($command) {
         $rules = [
             'file' => "image|required|between:1," . \Config::get('image-manager::maxFileSize') . ""
         ];

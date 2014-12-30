@@ -41,7 +41,7 @@ class ImageManagerFiles extends \Eloquent implements ImageDbStorageInterface {
         ];
     }
 
-    public function DeleteFile() {
+    public function deleteFile() {
         return $this->delete();
     }
 

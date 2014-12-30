@@ -67,23 +67,23 @@ class ImageRepository implements ImageRepositoryInterface {
         return $this->model->orderBy('created_at', 'desc')->paginate(12);
     }
 
-    public function DeleteFile($comand) {
+    public function deleteFile($comand) {
         try {
             $this->file = $this->model->getFileById($comand->id);
         } catch (ModelNotFoundException $e) {
             throw new JoseModelNotFoundException;
         }
-        $this->_removeFileFromDisk();
-        $this->_removeFileFromDb();
+        $this->removeFileFromDisk();
+        $this->removeFileFromDb();
     }
 
-    private function _removeFileFromDisk() {
+    private function removeFileFromDisk() {
         $file = $this->destination . '/' . $this->file->path;
         unlink($file);
         $this->raise(new FileWasRemovedFromDisc($this->file));
     }
 
-    private function _removeFileFromDb() {
+    private function removeFileFromDb() {
         $file = $this->file->getFileInfo();
         $this->file->DeleteFile();
         $this->raise(new FileWasRemovedFromDb($file));
