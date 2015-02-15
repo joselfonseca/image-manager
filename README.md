@@ -10,7 +10,7 @@ Laravel image Manager package
 
 A little Image Manager to use in forms and API's.
 
-This is the stable version for Laravel 4.2.*, compatibility with laravel 5 is being schedule.
+This is the stable version for Laravel 4.2.*, compatibility with laravel 5 is being scheduled.
 
 Requirements
 ============================
