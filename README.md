@@ -10,10 +10,13 @@ Laravel image Manager package
 
 A little Image Manager to use in forms and API's.
 
+This is the stable version for Laravel 4.2.*, compatibility with laravel 5 is being schedule.
+
 Requirements
 ============================
     1. Jquery
     2. Bootstrap 3
+    3. Laravel 4.2.*
 
 The package will insert colorbox JS and Plupload JS, make sure you import colorbox.css to your templates.
 
