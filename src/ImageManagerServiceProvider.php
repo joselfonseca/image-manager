@@ -20,7 +20,6 @@ class ImageManagerServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
-        $this->package('joselfonseca/image-manager');
 
         AliasLoader::getInstance()->alias('ImageManager', 'Joselfonseca\ImageManager\ImageManager');
 
