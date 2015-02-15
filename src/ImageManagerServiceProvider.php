@@ -25,7 +25,7 @@ class ImageManagerServiceProvider extends ServiceProvider {
         AliasLoader::getInstance()->alias('ImageManager', 'Joselfonseca\ImageManager\ImageManager');
 
         /** Check for the folder * */
-        define('IM_UPLOADPATH', app_path('storage/file_manager'));
+        define('IM_UPLOADPATH', storage_path('file_manager'));
 
         if (!is_dir(IM_UPLOADPATH)) {
             mkdir(IM_UPLOADPATH);
@@ -37,7 +37,7 @@ class ImageManagerServiceProvider extends ServiceProvider {
         \App::bind('Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface', 'Joselfonseca\ImageManager\Models\ImageManagerFiles');
 
         /** include the routes * */
-        require_once __DIR__ . '/../../routes.php';
+        require_once __DIR__ . '/routes.php';
     }
 
     /**
