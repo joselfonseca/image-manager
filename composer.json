@@ -21,7 +21,7 @@
             "src/migrations",
             "src/controllers"
         ],
-        "psr-0": {
+        "psr-4": {
             "Joselfonseca\\ImageManager\\": "src/"
         }
     },
