@@ -2,7 +2,7 @@
     @foreach($files as $f)
     <div class='col-lg-4' id="imageManager_{{$f->id}}">
         <div class="thumbnail">
-            <img src="{{action('showthumb', $f->id)}}" alt="">
+            <img src="{{action('media', ['id' => $f->id, 'width' => 250])}}" alt="">
             <div class="caption">
                 <button class="btn btn-default" data-file-id='{{$f->id}}' data-preview-url="{{action('media', ['id' => $f->id, 'width' => 250])}}" data-action="selected-file"><i class="fa fa-check-circle"></i> Use</button>
                 <button type="button" class="btn btn-default popover-dismiss" data-container="body" data-toggle="popover" data-placement="top" data-content='Are you sure you want to delete the file?<br /><button class="btn btn-danger" data-file-id="{{$f->id}}" data-delete-url="{{action('ImageManagerDelete', $f->id)}}" data-action="delete-file"><i class="fa fa-trash-o"></i> Delete</button>'>
