@@ -40,7 +40,7 @@ class ImageManager {
         $field_name = (isset($params['field_name'])) ? $params['field_name'] : 'image';
         $default = (isset($params['default'])) ? $params['default'] : \Input::old($params['field_name']);;
         if(!empty($default)){
-            $image = '<img src="'.action('showthumb', $default).'" class="imageManagerImage" />';
+            $image = '<img src="'.action('media', ['id' => $default, 'width' => 300]).'" class="imageManagerImage" />';
         }else{
             $image = '<img src="" style="display:none" class="imageManagerImage" />';
         }

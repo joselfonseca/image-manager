@@ -48,6 +48,7 @@ class ImageManagerServiceProvider extends ServiceProvider {
     public function register() {
         /** Register the service provider for the laracast commander * */
         $this->app->register('Laracasts\Commander\CommanderServiceProvider');
+        $this->app->register('Intervention\Image\ImageServiceProvider');
     }
 
     /**
