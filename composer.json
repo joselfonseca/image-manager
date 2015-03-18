@@ -22,7 +22,7 @@
             "src/controllers"
         ],
         "psr-4": {
-            "Joselfonseca\\ImageManager\\": "src/"
+            "Joselfonseca\\ImageManager\\": "src/joselfonseca/image-manager"
         }
     },
     "minimum-stability": "stable"
