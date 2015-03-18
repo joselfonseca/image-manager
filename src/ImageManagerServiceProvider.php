@@ -37,7 +37,7 @@ class ImageManagerServiceProvider extends ServiceProvider {
         \App::bind('Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface', 'Joselfonseca\ImageManager\Models\ImageManagerFiles');
 
         /** include the routes * */
-        require_once __DIR__ . '/../../routes.php';
+        require_once __DIR__ . '/routes.php';
     }
 
     /**
