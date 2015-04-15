@@ -24,7 +24,7 @@ class ImageManagerServiceProvider extends ServiceProvider {
         AliasLoader::getInstance()->alias('ImageManager', 'Joselfonseca\ImageManager\ImageManager');
 
         /** Check for the folder * */
-        define('IM_UPLOADPATH', storage_path('file_manager'));
+        defined('IM_UPLOADPATH') or define('IM_UPLOADPATH', storage_path('file_manager'));
 
         if (!is_dir(IM_UPLOADPATH)) {
             mkdir(IM_UPLOADPATH);
