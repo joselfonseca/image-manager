@@ -2,6 +2,7 @@
 
 namespace Joselfonseca\ImageManager\Controllers;
 
+use Illuminate\Routing\Controller;
 use Joselfonseca\ImageManager\Commands\UploadFile\UploadFileCommand;
 use Joselfonseca\ImageManager\Commands\RenderFile\RenderFileCommand;
 use Joselfonseca\ImageManager\Commands\DeleteFile\DeleteFileCommand;
@@ -18,7 +19,7 @@ use Joselfonseca\ImageManager\Interfaces\ImageRepositoryInterface;
  *
  * @author jfonseca
  */
-class ImageManagerController extends \Controller {
+class ImageManagerController extends Controller {
 
     use CommanderTrait;
     
@@ -53,13 +54,13 @@ class ImageManagerController extends \Controller {
             $file = $this->execute(UploadFileCommand::class, ['file' => \Input::file('file')]);
         } catch (ValidationExeption $e) {
             $return = ['errorCode' => 'ValidationError', 'messages' => $e->getErrors()];
-            return \Response::json($return, 400);
+            return response()->json($return, 400);
         } catch (AlocateFileException $e) {
             $return = ['errorCode' => 'AlocateError', 'messages' => ['Could not save the file to location.']];
-            return \Response::json($return, 500);
+            return response()->json($return, 500);
         }
         $return = ['file' => $file->getFileInfo()];
-        return \Response::json($return);
+        return response()->json($return);
     }
     
     public function delete($id){
@@ -67,9 +68,9 @@ class ImageManagerController extends \Controller {
             $this->execute(DeleteFileCommand::class, ['id' => $id]);
         }catch(JoseModelNotFoundException $e){
             $return = ['errorCode' => 'ModelNotFound', 'message' => 'The file does not exsist.'];
-            return \Response::json($return, 404);
+            return response()->json($return, 404);
         }
-        return \Response::json(['status' => true]);
+        return response()->json(['status' => true]);
     }
 
 }

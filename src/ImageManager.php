@@ -26,8 +26,8 @@ class ImageManager {
         return $this->execute(UploadFileCommand::class, ['file' => \Input::file('file')]);
     }
     
-    public function resize($id, $width = null, $height = null){
-        return $this->execute(RenderFileCommand::class, ['id' => $id, 'width' => $width, 'height' => $height]);
+    public function resize($id, $width = null, $height = null, $canvas = true){
+        return $this->execute(RenderFileCommand::class, ['id' => $id, 'width' => $width, 'height' => $height, 'canvas' => (bool) $canvas]);
     }
     
     public function imageInfo($id){

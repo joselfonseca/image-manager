@@ -27,11 +27,11 @@
         </div>
         <script>
             window.ImageManagerData = {
-                url: '{{action("ImageManagerUpload")}}',
-                flash: '{{asset("/packages/joselfonseca/image-manager/vendors/plupload/Moxie.swf")}}',
-                silverlight: '{{asset("/packages/joselfonseca/image-manager/vendors/plupload/Moxie.xap")}}',
-                maxFileSize: '{{Config::get("image-manager::maxFileSize")}}',
-                imagesUrl: '{{action("ImageManagerImages")}}'
+                url: '{{url("upload-image")}}',
+                flash: '{{asset("/vendors/image-manager/vendors/plupload/Moxie.swf")}}',
+                silverlight: '{{asset("/vendors/image-manager/vendors/plupload/Moxie.xap")}}',
+                maxFileSize: '{{config("image-manager.maxFileSize")}}',
+                imagesUrl: '{{url("image-manager-images")}}'
             };
         </script>
     </body>
