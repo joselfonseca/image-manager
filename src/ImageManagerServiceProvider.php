@@ -86,7 +86,7 @@ class ImageManagerServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/views/', 'image-manager');
         $this->publishes([
             __DIR__ . '/views/' => base_path('resources/views/vendor/image-manager'),
-        ]);
+        ],'IMviews');
         return $this;
     }
 
@@ -94,7 +94,7 @@ class ImageManagerServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/config/image-manager.php' => config_path('image-manager.php'),
-        ]);
+        ],'IMconfig');
         return $this;
     }
 
@@ -110,7 +110,7 @@ class ImageManagerServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../public' => public_path('vendor/image-manager'),
-        ]);
+        ],'IMpublic');
         return $this;
     }
 
