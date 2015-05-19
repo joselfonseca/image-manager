@@ -28,8 +28,8 @@
         <script>
             window.ImageManagerData = {
                 url: '{{url("upload-image")}}',
-                flash: '{{asset("/vendors/image-manager/vendors/plupload/Moxie.swf")}}',
-                silverlight: '{{asset("/vendors/image-manager/vendors/plupload/Moxie.xap")}}',
+                flash: '{{asset("/vendor/image-manager/vendors/plupload/Moxie.swf")}}',
+                silverlight: '{{asset("/vendor/image-manager/vendors/plupload/Moxie.xap")}}',
                 maxFileSize: '{{config("image-manager.maxFileSize")}}',
                 imagesUrl: '{{url("image-manager-images")}}'
             };

@@ -85,7 +85,7 @@ class ImageManagerServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/views/', 'image-manager');
         $this->publishes([
-            __DIR__ . '/views/' => base_path('resources/views/vendor/ImageManager'),
+            __DIR__ . '/views/' => base_path('resources/views/vendor/image-manager'),
         ]);
         return $this;
     }

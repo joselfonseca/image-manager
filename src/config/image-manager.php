@@ -5,6 +5,6 @@
  * its important to protect the file uploading with the filter!
  */
 return [
-    'filter' => ['admin_logged'],
+    'middleware' => ['auth'],
     'maxFileSize' => 1000096 //Max upload file size
 ];
