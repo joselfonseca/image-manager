@@ -36,9 +36,11 @@ Add the service provider
 `'Joselfonseca\ImageManager\ImageManagerServiceProvider'`
 
 Then publish the package assets, config and migration.
-`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMpublic`<br />
-`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMconfig`<br />
-`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMmigration`
+```bash
+php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMpublic
+php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMconfig
+php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMmigration
+```
 
 Migrate the database
 
