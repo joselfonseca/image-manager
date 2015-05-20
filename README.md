@@ -16,7 +16,7 @@ Requirements
 ============================
     1. Jquery
     2. Bootstrap 3
-    3. Laravel 4.2.*
+    3. Laravel 5.*
 
 The package will insert colorbox JS and Plupload JS, make sure you import colorbox.css to your templates.
 
@@ -36,9 +36,9 @@ Add the service provider
 `'Joselfonseca\ImageManager\ImageManagerServiceProvider'`
 
 Then publish the package assets, config and migration.
-`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMpublic`
-`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMconfig`
-`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMmigration`
+`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMpublic
+php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMconfig
+php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMmigration`
 
 Migrate the database
 
