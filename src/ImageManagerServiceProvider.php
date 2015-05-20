@@ -102,7 +102,7 @@ class ImageManagerServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/migrations/' => base_path('database/migrations'),
-        ]);
+        ], 'IMmigration');
         return $this;
     }
 

@@ -10,7 +10,7 @@ Laravel image Manager package
 
 A little Image Manager to use in forms and API's.
 
-This is the stable version for Laravel 4.2.*, compatibility with laravel 5 is being scheduled.
+This is the stable version for Laravel 5.x, if you want the 4.2 version check out the 1.0 branch
 
 Requirements
 ============================
@@ -26,7 +26,7 @@ Installation
 In your composer.json file add:
 
 ```js
-"joselfonseca/image-manager" : "1.0.*"
+"joselfonseca/image-manager" : "2.0.*"
 ```
 
 Run `composer update`
@@ -35,19 +35,21 @@ Add the service provider
 
 `'Joselfonseca\ImageManager\ImageManagerServiceProvider'`
 
-Then run the migration
-`php artisan migrate --package=joselfonseca/image-manager`
+Then publish the package assets, config and migration.
+`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMpublic`
+`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMconfig`
+`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMmigration`
 
-Then public the assets.
+Migrate the database
 
-`php artisan asset:publish joselfonseca/image-manager`
+`php artisan migrate`
 
 Finally reference the assets in the layout
 
 ```html
-<link href="{{asset('packages/joselfonseca/image-manager/css/imagemanager.css')}}" rel="stylesheet">
-<link href="{{asset('packages/joselfonseca/image-manager/vendors/colorbox/colorbox.css')}}" rel="stylesheet">
-<script src="{{asset('packages/joselfonseca/image-manager/js/imageManager.min.js')}}"></script>
+<link href="{{asset('vendor/image-manager/css/imagemanager.css')}}" rel="stylesheet">
+<link href="{{asset('vendor/image-manager/vendors/colorbox/colorbox.css')}}" rel="stylesheet">
+<script src="{{asset('vendor/image-manager/js/imageManager.min.js')}}"></script>
 ```
 
 Usage
@@ -56,8 +58,9 @@ Usage
 Make sure you have a field in your database to store the image id and inside your form add
 
 ```php
-<label for='titulo'>Imagen del Post</label>
+<label for='titulo'>Image</label>
 {{ImageManager::getField(['text' => 'Select the File', 'class' => 'btn btn-primary', 'field_name' => 'your_field_name', 'default' => '12'])}}
+// the default parameter is the image id in your table for your resource.
 ```
 
 Parameters
@@ -70,19 +73,19 @@ Parameters
 
 How to render an image?
 
-To render an image you can add to the src the route `action('showthumb', $id)`
+To render an image you can add to the src the route `route('showthumb', $id)`
 
 ```php
 // this will show a thumb
-<img src="{{action('showthumb', $default)}}" />
+<img src="{{route('showthumb', $default)}}" />
 // this the full image
-<img src="{{action('media', $default)}}" />
+<img src="{{route('media', $default)}}" />
 // this the full image resized by with
-<img src="{{action('media', ['id' => $default, 'width' => 300])}}" />
+<img src="{{route('media', ['id' => $default, 'width' => 300])}}" />
 // this the full image resized by with and height
-<img src="{{action('media', ['id' => $default, 'width' => 300, 'heigth' => 300])}}" />
+<img src="{{route('media', ['id' => $default, 'width' => 300, 'heigth' => 300])}}" />
 // this the full image resized by with and height in the canvas, not the image
-<img src="{{action('media', ['id' => $default, 'width' => 300, 'heigth' => 300, 'canvas' => 'canvas'])}}" />
+<img src="{{route('media', ['id' => $default, 'width' => 300, 'heigth' => 300, 'canvas' => 'canvas'])}}" />
 ```
 
 API
