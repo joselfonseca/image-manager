@@ -7,6 +7,6 @@ namespace Joselfonseca\ImageManager\Exceptions;
  *
  * @author desarrollo
  */
-class ModelNotFoundException {
+class ModelNotFoundException extends \Exception{
     //put your code here
 }

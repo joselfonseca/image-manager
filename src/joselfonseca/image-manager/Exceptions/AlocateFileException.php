@@ -6,6 +6,6 @@ namespace Joselfonseca\ImageManager\Exceptions;
  *
  * @author desarrollo
  */
-class AlocateFileException {
+class AlocateFileException extends \Exception{
     //put your code here
 }
