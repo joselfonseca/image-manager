@@ -31,6 +31,9 @@
                 url: window.ImageManagerData.url,
                 flash_swf_url: window.ImageManagerData.flash,
                 silverlight_xap_url: window.ImageManagerData.silverlight,
+                multipart_params : {
+                    "_token" : window.ImageManagerData.csfr
+                },
                 filters: {
                     max_file_size: window.ImageManagerData.maxFileSize,
                     mime_types: [

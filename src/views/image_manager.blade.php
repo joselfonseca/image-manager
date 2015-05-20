@@ -31,7 +31,8 @@
                 flash: '{{asset("/vendor/image-manager/vendors/plupload/Moxie.swf")}}',
                 silverlight: '{{asset("/vendor/image-manager/vendors/plupload/Moxie.xap")}}',
                 maxFileSize: '{{config("image-manager.maxFileSize")}}',
-                imagesUrl: '{{url("image-manager-images")}}'
+                imagesUrl: '{{url("image-manager-images")}}',
+                csfr: '{{csrf_token()}}'
             };
         </script>
     </body>

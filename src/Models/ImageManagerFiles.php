@@ -33,11 +33,11 @@ class ImageManagerFiles extends \Eloquent implements ImageDbStorageInterface {
             'name' => $this->name,
             'originalName' => $this->originalName,
             'type' => $this->type,
-            'url' => action('media', $this->id),
-            'thumb' => action('showthumb', $this->id),
+            'url' => route('media', $this->id),
+            'thumb' => route('showthumb', $this->id),
             'size' => (int) $this->size,
             'date_uploaded' => $this->created_at->format('Y-m-d H:i:s'),
-            'urlAll' => action('ImageManagerImages')
+            'urlAll' => route('ImageManagerImages')
         ];
     }
 
