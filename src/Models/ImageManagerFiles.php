@@ -2,6 +2,7 @@
 
 namespace Joselfonseca\ImageManager\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface;
 use Laracasts\Commander\Events\EventGenerator;
 use Joselfonseca\ImageManager\Commands\UploadFile\Events\FileWasSavedToDb;
@@ -11,7 +12,7 @@ use Joselfonseca\ImageManager\Commands\UploadFile\Events\FileWasSavedToDb;
  *
  * @author desarrollo
  */
-class ImageManagerFiles extends \Eloquent implements ImageDbStorageInterface {
+class ImageManagerFiles extends Model implements ImageDbStorageInterface {
 
     protected $table = 'image_manager_files';
     protected $fillable = ['name', 'originalName', 'type', 'path', 'size'];
