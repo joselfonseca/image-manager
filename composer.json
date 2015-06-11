@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "illuminate/support": "5.0.*",
+        "illuminate/support": "5.1.*",
         "laracasts/commander": "~1.0",
         "intervention/image": "2.*",
         "intervention/imagecache": "2.*"
