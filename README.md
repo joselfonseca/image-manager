@@ -61,7 +61,7 @@ Make sure you have a field in your database to store the image id and inside you
 
 ```php
 <label for='titulo'>Image</label>
-{{ImageManager::getField(['text' => 'Select the File', 'class' => 'btn btn-primary', 'field_name' => 'your_field_name', 'default' => '12'])}}
+{!! ImageManager::getField(['text' => 'Select the File', 'class' => 'btn btn-primary', 'field_name' => 'your_field_name', 'default' => '12']) !!}
 // the default parameter is the image id in your table for your resource.
 ```
 
