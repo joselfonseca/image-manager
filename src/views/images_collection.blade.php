@@ -15,6 +15,6 @@
 </div>
 <div class="row">
     <div class="center-block images-paginator" style="text-align: center">
-        {{$files->render()}}
+        {!! $files->render() !!}
     </div>
 </div>
