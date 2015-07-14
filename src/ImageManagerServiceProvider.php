@@ -31,11 +31,20 @@ class ImageManagerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__ . '/../public' => public_path('vendor/image-manager'),
+        ],'IMpublic');
+        $this->publishes([
+            __DIR__ . '/views/' => base_path('resources/views/vendor/image-manager'),
+        ],'IMviews');
+        $this->publishes([
+            __DIR__ . '/config/image-manager.php' => config_path('image-manager.php'),
+        ],'IMconfig');
+        $this->publishes([
+            __DIR__ . '/../migrations/' => base_path('database/migrations'),
+        ], 'IMmigration');
         $this->checkAndCreateFolder()
-             ->loadViewsConfiguration()
-             ->publishesConfiguration()
-             ->publishesMigrations()
-             ->publishesAssets();
+             ->loadViewsConfiguration();
         /** bind Stuff * */
         $this->app->bind('Joselfonseca\ImageManager\Interfaces\ImageRepositoryInterface', 'Joselfonseca\ImageManager\Repositories\ImageRepository');
         $this->app->bind('Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface', 'Joselfonseca\ImageManager\Models\ImageManagerFiles');
@@ -84,33 +93,6 @@ class ImageManagerServiceProvider extends ServiceProvider
     private function loadViewsConfiguration()
     {
         $this->loadViewsFrom(__DIR__ . '/views/', 'image-manager');
-        $this->publishes([
-            __DIR__ . '/views/' => base_path('resources/views/vendor/image-manager'),
-        ],'IMviews');
-        return $this;
-    }
-
-    private function publishesConfiguration()
-    {
-        $this->publishes([
-            __DIR__ . '/config/image-manager.php' => config_path('image-manager.php'),
-        ],'IMconfig');
-        return $this;
-    }
-
-    private function publishesMigrations()
-    {
-        $this->publishes([
-            __DIR__ . '/migrations/' => base_path('database/migrations'),
-        ], 'IMmigration');
-        return $this;
-    }
-
-    private function publishesAssets()
-    {
-        $this->publishes([
-            __DIR__ . '/../public' => public_path('vendor/image-manager'),
-        ],'IMpublic');
         return $this;
     }
 
