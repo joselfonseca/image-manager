@@ -8,5 +8,6 @@ return [
     'use' => 'Use',
     'delete_title' => 'Delete',
     'delete_file' => 'Delete',
-    'delete_message' => 'Are you sure you want to delete this file?'
+    'delete_message' => 'Are you sure you want to delete this file?',
+    'upload' => 'Upload'
 ];

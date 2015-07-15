@@ -8,5 +8,6 @@ return [
     'use' => 'Usar',
     'delete_title' => 'Eliminar',
     'delete_file' => 'Eliminar',
-    'delete_message' => 'Está seguro que desea eliminar este archivo?'
+    'delete_message' => 'Está seguro que desea eliminar este archivo?',
+    'upload' => 'Cargar'
 ];

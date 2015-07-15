@@ -10,7 +10,7 @@
             <hr>
             <div class='row'>
                 <div class='col-lg-3'>
-                    <h4>Upload</h4>
+                    <h4>{{trans('ImageManager::image-manager.upload')}}</h4>
                     <div id='container-upload'>
                         <button id="pickfiles" class="btn btn-primary">{{trans('ImageManager::image-manager.select_files')}}</button>
                         <button id="uploadfiles" class="btn btn-primary">{{trans('ImageManager::image-manager.upload_files')}}</button>
