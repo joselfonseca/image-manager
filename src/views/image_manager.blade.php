@@ -6,19 +6,19 @@
     </head>
     <body>
         <div class='container'>
-            <h3>Image Manager</h3>
+            <h3>{{trans('ImageManager::image-manager.title')}}</h3>
             <hr>
             <div class='row'>
                 <div class='col-lg-3'>
                     <h4>Upload</h4>
                     <div id='container-upload'>
-                        <button id="pickfiles" class="btn btn-primary">Select files</button>
-                        <button id="uploadfiles" class="btn btn-primary">Upload files</button>
+                        <button id="pickfiles" class="btn btn-primary">{{trans('ImageManager::image-manager.select_files')}}</button>
+                        <button id="uploadfiles" class="btn btn-primary">{{trans('ImageManager::image-manager.upload_files')}}</button>
                         <div id="filelist"></div>
                     </div>
                 </div>
                 <div class='col-lg-9'>
-                    <h4>Select from library</h4>
+                    <h4>{{trans('ImageManager::image-manager.select_from_library')}}</h4>
                     <div id="image-loader">
 
                     </div>
