@@ -26,7 +26,7 @@ Installation
 In your composer.json file add:
 
 ```js
-"joselfonseca/image-manager" : "2.0.*"
+"joselfonseca/image-manager" : "2.1.*"
 ```
 
 Run `composer update`
