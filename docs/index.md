@@ -1,5 +1,4 @@
-Laravel image Manager package 
-=============================
+# Laravel Image Manager
 
 [![Build Status](https://travis-ci.org/joselfonseca/image-manager.svg?branch=master)](https://travis-ci.org/joselfonseca/image-manager)
 [![Latest Stable Version](https://poser.pugx.org/joselfonseca/image-manager/v/stable.svg)](https://packagist.org/packages/joselfonseca/image-manager) 

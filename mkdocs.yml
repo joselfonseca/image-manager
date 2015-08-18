@@ -1,0 +1,6 @@
+site_name: Laravel Admin Blog
+pages:
+- index.md
+- license.md
+- changelog.md
+theme: readthedocs
