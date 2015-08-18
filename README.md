@@ -6,7 +6,6 @@ Laravel image Manager package
 [![Total Downloads](https://poser.pugx.org/joselfonseca/image-manager/downloads.svg)](https://packagist.org/packages/joselfonseca/image-manager) 
 [![Latest Unstable Version](https://poser.pugx.org/joselfonseca/image-manager/v/unstable.svg)](https://packagist.org/packages/joselfonseca/image-manager) 
 [![License](https://poser.pugx.org/joselfonseca/image-manager/license.svg)](https://packagist.org/packages/joselfonseca/image-manager)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/32a20858-db3e-4e28-8211-9517268b3f6f/small.png)](https://insight.sensiolabs.com/projects/32a20858-db3e-4e28-8211-9517268b3f6f)
 
 A little Image Manager to use in forms and API's.
 
