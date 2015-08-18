@@ -1,0 +1,69 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Laravel Image Manager\n\n\n\n\n \n\n \n\n\n\nA little Image Manager to use in forms and API's.\n\n\nThis is the stable version for Laravel 5.x.\n\n\nRequirements\n\n\n1. Jquery\n2. Bootstrap 3\n3. Laravel 5.*\n\n\n\nThe package will insert colorbox JS and Plupload JS, make sure you import colorbox.css to your templates.\n\n\nInstallation\n\n\nIn your composer.json file add:\n\n\njoselfonseca/image-manager\n : \n2.1.*\n\n\n\n\n\nRun \ncomposer update\n\n\nAdd the service provider\n\n\n'Joselfonseca\\ImageManager\\ImageManagerServiceProvider'\n\n\nThen publish the package assets, config and migration.\n\n\nphp artisan vendor:publish --provider=Joselfonseca\\ImageManager\\ImageManagerServiceProvider --force --tag=IMpublic\nphp artisan vendor:publish --provider=Joselfonseca\\ImageManager\\ImageManagerServiceProvider --force --tag=IMconfig\nphp artisan vendor:publish --provider=Joselfonseca\\ImageManager\\ImageManagerServiceProvider --force --tag=IMmigration\n\n\n\n\nMigrate the database\n\n\nphp artisan migrate\n\n\nFinally reference the assets in the layout\n\n\nlink href=\n{{asset('vendor/image-manager/css/imagemanager.css')}}\n rel=\nstylesheet\n\n\nlink href=\n{{asset('vendor/image-manager/vendors/colorbox/colorbox.css')}}\n rel=\nstylesheet\n\n\nscript src=\n{{asset('vendor/image-manager/js/imageManager.min.js')}}\n/script\n\n\n\n\n\nUsage\n\n\nMake sure you have a field in your database to store the image id and inside your form add\n\n\nlabel for='titulo'\nImage\n/label\n\n{!! ImageManager::getField(['text' =\n 'Select the File', 'class' =\n 'btn btn-primary', 'field_name' =\n 'your_field_name', 'default' =\n '12']) !!}\n// the default parameter is the image id in your table for your resource.\n\n\n\n\nParameters\n\n\n    - text: the text for the button\n    - class: the class to apply to the button\n    - field_name: the field name for the image selected, this creates a hidden input with the field_name to get the id of the image selected when you post the form\n    - default: the id for the image to be selected by default\n\n\n\n\nHow to render an image?\n\n\nTo render an image you can add to the src the route \nroute('showthumb', $id)\n\n\n// this will show a thumb\n\nimg src=\n{{route('showthumb', $default)}}\n /\n\n// this the full image\n\nimg src=\n{{route('media', $default)}}\n /\n\n// this the full image resized by with\n\nimg src=\n{{route('media', ['id' =\n $default, 'width' =\n 300])}}\n /\n\n// this the full image resized by with and height\n\nimg src=\n{{route('media', ['id' =\n $default, 'width' =\n 300, 'heigth' =\n 300])}}\n /\n\n// this the full image resized by with and height in the canvas, not the image\n\nimg src=\n{{route('media', ['id' =\n $default, 'width' =\n 300, 'heigth' =\n 300, 'canvas' =\n 'canvas'])}}\n /\n\n\n\n\n\nAPI\n\n\nYou can use the following methods with out the image selector modal.\n\n\n\nImageManager::doUpload(); //this method receives the input file like Input::file('file')\nImageManager::resize($id, $width = null, $height = null); //this method will render the image according to the parameters\nImageManager::imageInfo($id); //this method will return an instance of Joselfonseca\\ImageManager\\Models\\ImageManagerFiles which is the eloquent model for the image_manager_files table for the id given.\n\n\n\n\n\nPlease report Bugs!\n\n\nThis is a new component that needs PR and bug report, use the repo to raise any issues.\n\n\nTo Do\n\n\n    1. Unit Testing\n    2. Image resizing and cropping\n    3. Anything else cool!\n\n\n\n\nThanks!\n\n\nI would like to thank anyone who uses the component and report bugs. This will always be a work in progress.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#laravel-image-manager", 
+            "text": "A little Image Manager to use in forms and API's.  This is the stable version for Laravel 5.x.", 
+            "title": "Laravel Image Manager"
+        }, 
+        {
+            "location": "/#requirements", 
+            "text": "1. Jquery\n2. Bootstrap 3\n3. Laravel 5.*  The package will insert colorbox JS and Plupload JS, make sure you import colorbox.css to your templates.", 
+            "title": "Requirements"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "In your composer.json file add:  joselfonseca/image-manager  :  2.1.*   Run  composer update  Add the service provider  'Joselfonseca\\ImageManager\\ImageManagerServiceProvider'  Then publish the package assets, config and migration.  php artisan vendor:publish --provider=Joselfonseca\\ImageManager\\ImageManagerServiceProvider --force --tag=IMpublic\nphp artisan vendor:publish --provider=Joselfonseca\\ImageManager\\ImageManagerServiceProvider --force --tag=IMconfig\nphp artisan vendor:publish --provider=Joselfonseca\\ImageManager\\ImageManagerServiceProvider --force --tag=IMmigration  Migrate the database  php artisan migrate  Finally reference the assets in the layout  link href= {{asset('vendor/image-manager/css/imagemanager.css')}}  rel= stylesheet  link href= {{asset('vendor/image-manager/vendors/colorbox/colorbox.css')}}  rel= stylesheet  script src= {{asset('vendor/image-manager/js/imageManager.min.js')}} /script", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#usage", 
+            "text": "Make sure you have a field in your database to store the image id and inside your form add  label for='titulo' Image /label \n{!! ImageManager::getField(['text' =  'Select the File', 'class' =  'btn btn-primary', 'field_name' =  'your_field_name', 'default' =  '12']) !!}\n// the default parameter is the image id in your table for your resource.  Parameters      - text: the text for the button\n    - class: the class to apply to the button\n    - field_name: the field name for the image selected, this creates a hidden input with the field_name to get the id of the image selected when you post the form\n    - default: the id for the image to be selected by default  How to render an image?  To render an image you can add to the src the route  route('showthumb', $id)  // this will show a thumb img src= {{route('showthumb', $default)}}  / \n// this the full image img src= {{route('media', $default)}}  / \n// this the full image resized by with img src= {{route('media', ['id' =  $default, 'width' =  300])}}  / \n// this the full image resized by with and height img src= {{route('media', ['id' =  $default, 'width' =  300, 'heigth' =  300])}}  / \n// this the full image resized by with and height in the canvas, not the image img src= {{route('media', ['id' =  $default, 'width' =  300, 'heigth' =  300, 'canvas' =  'canvas'])}}  /", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/#api", 
+            "text": "You can use the following methods with out the image selector modal.  \nImageManager::doUpload(); //this method receives the input file like Input::file('file')\nImageManager::resize($id, $width = null, $height = null); //this method will render the image according to the parameters\nImageManager::imageInfo($id); //this method will return an instance of Joselfonseca\\ImageManager\\Models\\ImageManagerFiles which is the eloquent model for the image_manager_files table for the id given.", 
+            "title": "API"
+        }, 
+        {
+            "location": "/#please-report-bugs", 
+            "text": "This is a new component that needs PR and bug report, use the repo to raise any issues.", 
+            "title": "Please report Bugs!"
+        }, 
+        {
+            "location": "/#to-do", 
+            "text": "1. Unit Testing\n    2. Image resizing and cropping\n    3. Anything else cool!", 
+            "title": "To Do"
+        }, 
+        {
+            "location": "/#thanks", 
+            "text": "I would like to thank anyone who uses the component and report bugs. This will always be a work in progress.", 
+            "title": "Thanks!"
+        }, 
+        {
+            "location": "/license/", 
+            "text": "The MIT License (MIT)\n\n\nCopyright (c) 2015 :author_name \n:author_email\n\n\n\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.", 
+            "title": "License"
+        }, 
+        {
+            "location": "/license/#the-mit-license-mit", 
+            "text": "Copyright (c) 2015 :author_name  :author_email   Permission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.  THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.", 
+            "title": "The MIT License (MIT)"
+        }, 
+        {
+            "location": "/changelog/", 
+            "text": "Changelog\n\n\nAll Notable changes to \nimage-manager\n will be documented in this file", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/changelog/#changelog", 
+            "text": "All Notable changes to  image-manager  will be documented in this file", 
+            "title": "Changelog"
+        }
+    ]
+}
