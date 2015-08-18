@@ -6,7 +6,6 @@ Laravel image Manager package
 [![Total Downloads](https://poser.pugx.org/joselfonseca/image-manager/downloads.svg)](https://packagist.org/packages/joselfonseca/image-manager) 
 [![Latest Unstable Version](https://poser.pugx.org/joselfonseca/image-manager/v/unstable.svg)](https://packagist.org/packages/joselfonseca/image-manager) 
 [![License](https://poser.pugx.org/joselfonseca/image-manager/license.svg)](https://packagist.org/packages/joselfonseca/image-manager)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/32a20858-db3e-4e28-8211-9517268b3f6f/small.png)](https://insight.sensiolabs.com/projects/32a20858-db3e-4e28-8211-9517268b3f6f)
 
 A little Image Manager to use in forms and API's.
 
@@ -16,7 +15,7 @@ Requirements
 ============================
     1. Jquery
     2. Bootstrap 3
-    3. Laravel 4.2.*
+    3. Laravel 5.*
 
 The package will insert colorbox JS and Plupload JS, make sure you import colorbox.css to your templates.
 
@@ -26,7 +25,7 @@ Installation
 In your composer.json file add:
 
 ```js
-"joselfonseca/image-manager" : "2.0.*"
+"joselfonseca/image-manager" : "2.1.*"
 ```
 
 Run `composer update`
@@ -36,9 +35,11 @@ Add the service provider
 `'Joselfonseca\ImageManager\ImageManagerServiceProvider'`
 
 Then publish the package assets, config and migration.
-`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMpublic`
-`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMconfig`
-`php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMmigration`
+```bash
+php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMpublic
+php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMconfig
+php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServiceProvider --force --tag=IMmigration
+```
 
 Migrate the database
 
@@ -59,7 +60,7 @@ Make sure you have a field in your database to store the image id and inside you
 
 ```php
 <label for='titulo'>Image</label>
-{{ImageManager::getField(['text' => 'Select the File', 'class' => 'btn btn-primary', 'field_name' => 'your_field_name', 'default' => '12'])}}
+{!! ImageManager::getField(['text' => 'Select the File', 'class' => 'btn btn-primary', 'field_name' => 'your_field_name', 'default' => '12']) !!}
 // the default parameter is the image id in your table for your resource.
 ```
 

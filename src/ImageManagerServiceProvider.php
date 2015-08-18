@@ -31,14 +31,29 @@ class ImageManagerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__ . '/../public' => public_path('vendor/image-manager'),
+        ], 'IMpublic');
+        $this->publishes([
+            __DIR__ . '/views/' => base_path('resources/views/vendor/image-manager'),
+        ], 'IMviews');
+        $this->publishes([
+            __DIR__ . '/config/image-manager.php' => config_path('image-manager.php'),
+        ], 'IMconfig');
+        $this->publishes([
+            __DIR__ . '/../migrations/' => base_path('database/migrations'),
+        ], 'IMmigration');
+        $this->publishes([
+            __DIR__ . '/lang' => base_path('resources/lang'),
+        ], 'IMLangs');
         $this->checkAndCreateFolder()
-             ->loadViewsConfiguration()
-             ->publishesConfiguration()
-             ->publishesMigrations()
-             ->publishesAssets();
+            ->loadViewsConfiguration()
+            ->registerTranslations();
         /** bind Stuff * */
-        $this->app->bind('Joselfonseca\ImageManager\Interfaces\ImageRepositoryInterface', 'Joselfonseca\ImageManager\Repositories\ImageRepository');
-        $this->app->bind('Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface', 'Joselfonseca\ImageManager\Models\ImageManagerFiles');
+        $this->app->bind('Joselfonseca\ImageManager\Interfaces\ImageRepositoryInterface',
+            'Joselfonseca\ImageManager\Repositories\ImageRepository');
+        $this->app->bind('Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface',
+            'Joselfonseca\ImageManager\Models\ImageManagerFiles');
 
         /** include the routes * */
         require_once __DIR__ . '/routes.php';
@@ -59,6 +74,7 @@ class ImageManagerServiceProvider extends ServiceProvider
         foreach ($this->providers as $provider) {
             $this->app->register($provider);
         }
+
         return $this;
     }
 
@@ -67,6 +83,7 @@ class ImageManagerServiceProvider extends ServiceProvider
         foreach ($this->aliases as $alias => $original) {
             AliasLoader::getInstance()->alias($alias, $original);
         }
+
         return $this;
     }
 
@@ -78,39 +95,25 @@ class ImageManagerServiceProvider extends ServiceProvider
             mkdir(IM_UPLOADPATH);
             chmod(IM_UPLOADPATH, 0777);
         }
+
         return $this;
     }
 
     private function loadViewsConfiguration()
     {
         $this->loadViewsFrom(__DIR__ . '/views/', 'image-manager');
-        $this->publishes([
-            __DIR__ . '/views/' => base_path('resources/views/vendor/image-manager'),
-        ],'IMviews');
+
         return $this;
     }
 
-    private function publishesConfiguration()
+    /**
+     * Register the translations
+     * @return $this
+     */
+    private function registerTranslations()
     {
-        $this->publishes([
-            __DIR__ . '/config/image-manager.php' => config_path('image-manager.php'),
-        ],'IMconfig');
-        return $this;
-    }
+        $this->loadTranslationsFrom(__DIR__ . '/lang', 'ImageManager');
 
-    private function publishesMigrations()
-    {
-        $this->publishes([
-            __DIR__ . '/migrations/' => base_path('database/migrations'),
-        ], 'IMmigration');
-        return $this;
-    }
-
-    private function publishesAssets()
-    {
-        $this->publishes([
-            __DIR__ . '/../public' => public_path('vendor/image-manager'),
-        ],'IMpublic');
         return $this;
     }
 
