@@ -70,7 +70,27 @@ Parameters
     - default: the id for the image to be selected by default
 ```
 
+Multiple Images
+===============================
+
+To add a multi images selector, inside your form add
+
+```php
+    <h2>Slider Home</h2>
+    {!! ImageManager::getMultiField(['field_name' => 'images', 'default' => $model->slides->pluck('file', 'file')->toArray()]) !!}
+```
+
+Parameters
+```
+    - field_name: the field name for the image selected, this creates a hidden input with the field_name to get the id of the image selected when you post the form
+    - default: array of id's for the images to be added by default
+```
+
+This will create hidden inputs with the name as an array, how you save the images is up to you.
+
+
 How to render an image?
+===============================
 
 To render an image you can add to the src the route `route('showthumb', $id)`
 

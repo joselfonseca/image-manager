@@ -13,6 +13,7 @@ var paths = {
     scripts: [
     './assets/vendors/plupload/js/plupload.full.min.js',
     './assets/vendors/colorbox/jquery.colorbox-min.js',
+    './assets/vendors/handlebars/handlebars.js',
     './assets/js/image-manager.js'
     ]
 };

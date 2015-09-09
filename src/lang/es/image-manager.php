@@ -9,5 +9,7 @@ return [
     'delete_title' => 'Eliminar',
     'delete_file' => 'Eliminar',
     'delete_message' => 'Está seguro que desea eliminar este archivo?',
-    'upload' => 'Cargar'
+    'upload' => 'Cargar',
+    'multiple_image_manager' => 'Imágenes múltiples',
+    'delete_multi_title' => 'Quitar de la galería'
 ];

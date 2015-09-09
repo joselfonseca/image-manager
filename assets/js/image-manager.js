@@ -97,12 +97,24 @@
         },
         afterSelect: function() {
             var $caller = window.ImageManagerCaller;
-            window.ImageManagerCaller = null;
-            $input = $caller.parents('.ImageManager').find('.inputFile');
-            $preview = $caller.parents('.ImageManager').find('.imageManagerImage');
-            $input.val(window.ImageManager.SelectedFile.id);
-            $preview.attr('src', window.ImageManager.SelectedFile.url).show();
+            if(window.ImageManagerCaller.data('multi') === true) {
+                window.ImageManager.afterSelectMulti();
+            }else{
+                window.ImageManagerCaller = null;
+                $input = $caller.parents('.ImageManager').find('.inputFile');
+                $preview = $caller.parents('.ImageManager').find('.imageManagerImage');
+                $input.val(window.ImageManager.SelectedFile.id);
+                $preview.attr('src', window.ImageManager.SelectedFile.url).show();
+                window.ImageManager.SelectedFile = null;
+            }
+        },
+        afterSelectMulti: function() {
+            var source   = $("#multi-image-template").html();
+            var template = Handlebars.compile(source);
+            var html = template(window.ImageManager.SelectedFile);
+            $('#filesContainer').append(html);
             window.ImageManager.SelectedFile = null;
+            window.ImageManagerCaller = null;
         }
     };
 
@@ -137,6 +149,11 @@
                 
             }
         }, 'json');
+    });
+
+    $(document).on('click', '[data-action="removeFromMultiImage"]', function(){
+        var $this = $(this);
+        $('#file_'+$this.data('id')).remove();
     });
 
 })($, window);
