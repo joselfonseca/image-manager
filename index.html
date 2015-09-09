@@ -67,6 +67,12 @@
                 <li class="toctree-l3"><a href="#usage">Usage</a></li>
                 
             
+                <li class="toctree-l3"><a href="#multiple-images">Multiple Images</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#how-to-render-an-image">How to render an image?</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#api">API</a></li>
                 
             
@@ -179,7 +185,19 @@ php artisan vendor:publish --provider=Joselfonseca\ImageManager\ImageManagerServ
     - default: the id for the image to be selected by default
 </code></pre>
 
-<p>How to render an image?</p>
+<h1 id="multiple-images">Multiple Images</h1>
+<p>To add a multi images selector, inside your form add</p>
+<pre><code class="php">    &lt;h2&gt;Slider Home&lt;/h2&gt;
+    {!! ImageManager::getMultiField(['field_name' =&gt; 'images', 'default' =&gt; $model-&gt;slides-&gt;pluck('file', 'file')-&gt;toArray()]) !!}
+</code></pre>
+
+<p>Parameters</p>
+<pre><code>    - field_name: the field name for the image selected, this creates a hidden input with the field_name to get the id of the image selected when you post the form
+    - default: array of id's for the images to be added by default
+</code></pre>
+
+<p>This will create hidden inputs with the name as an array, how you save the images is up to you.</p>
+<h1 id="how-to-render-an-image">How to render an image?</h1>
 <p>To render an image you can add to the src the route <code>route('showthumb', $id)</code></p>
 <pre><code class="php">// this will show a thumb
 &lt;img src=&quot;{{route('showthumb', $default)}}&quot; /&gt;
@@ -257,5 +275,5 @@ ImageManager::imageInfo($id); //this method will return an instance of Joselfons
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-08-18 13:37:55.500039
+Build Date UTC : 2015-09-09 21:46:32.116513
 -->
