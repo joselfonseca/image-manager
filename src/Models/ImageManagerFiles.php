@@ -15,7 +15,7 @@ use Joselfonseca\ImageManager\Commands\UploadFile\Events\FileWasSavedToDb;
 class ImageManagerFiles extends Model implements ImageDbStorageInterface {
 
     protected $table = 'image_manager_files';
-    protected $fillable = ['name', 'originalName', 'type', 'path', 'size'];
+    protected $fillable = ['name', 'originalName', 'type', 'path', 'size', 'from_manager'];
 
     use EventGenerator;
 
@@ -38,7 +38,8 @@ class ImageManagerFiles extends Model implements ImageDbStorageInterface {
             'thumb' => route('showthumb', $this->id),
             'size' => (int) $this->size,
             'date_uploaded' => $this->created_at->format('Y-m-d H:i:s'),
-            'urlAll' => route('ImageManagerImages')
+            'urlAll' => route('ImageManagerImages'),
+            'fromManager' => (bool) $this->from_manager
         ];
     }
 

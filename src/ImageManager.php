@@ -37,7 +37,7 @@ class ImageManager
      */
     public function doUpload()
     {
-        return $this->execute(UploadFileCommand::class, ['file' => \Input::file('file')]);
+        return $this->execute(UploadFileCommand::class, ['file' => \Input::file('file'), 'fromManager' => false]);
     }
 
     /**

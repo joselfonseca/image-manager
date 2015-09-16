@@ -51,7 +51,7 @@ class ImageManagerController extends Controller {
 
     public function store() {
         try {
-            $file = $this->execute(UploadFileCommand::class, ['file' => \Input::file('file')]);
+            $file = $this->execute(UploadFileCommand::class, ['file' => \Input::file('file'), 'fromManager' => true]);
         } catch (ValidationExeption $e) {
             $return = ['errorCode' => 'ValidationError', 'messages' => $e->getErrors()];
             return response()->json($return, 400);

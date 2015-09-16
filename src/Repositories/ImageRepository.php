@@ -45,7 +45,8 @@ class ImageRepository implements ImageRepositoryInterface {
             'originalName' => $filename,
             'type' => $upload_success->getMimeType(),
             'path' => $finalFile,
-            'size' => $upload_success->getSize()
+            'size' => $upload_success->getSize(),
+            'from_manager' => (int)$command->fromManager
         ];
         $this->raise(new FileWasSavedToDisc($file));
         return $this->model->saveFileToDb($file);
@@ -64,7 +65,7 @@ class ImageRepository implements ImageRepositoryInterface {
     }
 
     public function getFiles() {
-        return $this->model->orderBy('created_at', 'desc')->paginate(12);
+        return $this->model->orderBy('created_at', 'desc')->where('from_manager', 1)->paginate(12);
     }
 
     public function deleteFile($comand) {
