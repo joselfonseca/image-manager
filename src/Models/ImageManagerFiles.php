@@ -15,7 +15,7 @@ use Joselfonseca\ImageManager\Commands\UploadFile\Events\FileWasSavedToDb;
 class ImageManagerFiles extends Model implements ImageDbStorageInterface {
 
     protected $table = 'image_manager_files';
-    protected $fillable = ['name', 'originalName', 'type', 'path', 'size'];
+    protected $fillable = ['name', 'originalName', 'type', 'path', 'size', 'from_manager'];
 
     use EventGenerator;
 
