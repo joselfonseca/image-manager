@@ -4,6 +4,7 @@
         <div class="thumbnail">
             <img src="{{route('media', ['id' => $f->id, 'width' => 200, 'height' => 200, 'canvas' => 'canvas'])}}" alt="">
             <div class="caption">
+                <p>{{str_limit($f->originalName, 15)}}</p>
                 <button class="btn btn-default" data-file-id='{{$f->id}}' data-preview-url="{{route('media', ['id' => $f->id, 'width' => 200, 'height' => 200, 'canvas' => 'canvas'])}}" data-action="selected-file"><i class="fa fa-check-circle"></i> {{trans('ImageManager::image-manager.use')}}</button>
                 <button type="button" class="btn btn-default popover-dismiss" data-container="body" data-toggle="popover" data-placement="top" data-content='{{trans('ImageManager::image-manager.delete_message')}}<br /><button class="btn btn-danger" data-file-id="{{$f->id}}" data-delete-url="{{route('ImageManagerDelete', $f->id)}}" data-action="delete-file"><i class="fa fa-trash-o"></i> {{trans('ImageManager::image-manager.delete_title')}}</button>'>
                     {{trans('ImageManager::image-manager.delete_file')}}
