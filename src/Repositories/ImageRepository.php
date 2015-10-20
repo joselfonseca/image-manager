@@ -52,7 +52,7 @@ class ImageRepository implements ImageRepositoryInterface {
      * @return mixed
      * @throws AlocateFileException
      */
-    public function uploadFile($command, $fromManager = 1) {
+    public function uploadFile($command) {
         $filename = $command->file->getClientOriginalName();
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         $finalFile = md5(md5($filename . date('U'))) . '.' . $ext;
@@ -66,7 +66,7 @@ class ImageRepository implements ImageRepositoryInterface {
             'type' => $upload_success->getMimeType(),
             'path' => $finalFile,
             'size' => $upload_success->getSize(),
-            'from_manager' => $fromManager
+            'from_manager' => $command->fromManager
         ];
         $this->raise(new FileWasSavedToDisc($file));
         return $this->model->saveFileToDb($file);

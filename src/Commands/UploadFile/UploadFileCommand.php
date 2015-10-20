@@ -11,8 +11,11 @@ class UploadFileCommand {
 
     public $file;
 
-    public function __construct($file) {
+    public $fromManager;
+
+    public function __construct($file, $fromManager = 1) {
         $this->file = $file;
+        $this->fromManager = $fromManager;
     }
 
 }
