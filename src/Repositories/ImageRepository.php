@@ -114,7 +114,9 @@ class ImageRepository implements ImageRepositoryInterface {
      */
     private function removeFileFromDisk() {
         $file = $this->destination . '/' . $this->file->path;
-        unlink($file);
+        if(file_exists($file)){
+            unlink($file);
+        }
         $this->raise(new FileWasRemovedFromDisc($this->file));
     }
 
