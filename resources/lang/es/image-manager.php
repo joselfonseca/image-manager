@@ -2,8 +2,8 @@
 
 return [
     'title' => 'Administrador de imágenes',
-    'select_files' => 'Seleccione archivos',
-    'upload_files' => 'Subir archivos',
+    'select_files' => 'Explorar',
+    'upload_files' => 'Cargar',
     'select_from_library' => 'Seleccionar de la librería',
     'use' => 'Usar',
     'delete_title' => 'Eliminar',

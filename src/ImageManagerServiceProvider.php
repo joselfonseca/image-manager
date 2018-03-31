@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class ImageManagerServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -16,12 +15,11 @@ class ImageManagerServiceProvider extends ServiceProvider
     protected $defer = false;
 
     protected $providers = [
-        'Laracasts\Commander\CommanderServiceProvider',
-        'Intervention\Image\ImageServiceProvider',
+        \Intervention\Image\ImageServiceProvider::class,
     ];
+
     protected $aliases = [
-        'Image' => 'Intervention\Image\Facades\Image',
-        'ImageManager' => 'Joselfonseca\ImageManager\ImageManager',
+        'Image' => \Intervention\Image\Facades\Image::class,
     ];
 
     /**
@@ -32,31 +30,23 @@ class ImageManagerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../public' => public_path('vendor/image-manager'),
-        ], 'IMpublic');
+            __DIR__.'/../public' => public_path('vendor/image-manager'),
+        ], 'public');
         $this->publishes([
-            __DIR__ . '/views/' => base_path('resources/views/vendor/image-manager'),
-        ], 'IMviews');
+            __DIR__.'/../resources/views/' => base_path('resources/views/vendor/image-manager'),
+        ], 'views');
         $this->publishes([
-            __DIR__ . '/config/image-manager.php' => config_path('image-manager.php'),
-        ], 'IMconfig');
+            __DIR__.'/../config/config.php' => config_path('image-manager.php'),
+        ], 'config');
         $this->publishes([
-            __DIR__ . '/../migrations/' => base_path('database/migrations'),
-        ], 'IMmigration');
+            __DIR__.'/../migrations/' => base_path('database/migrations'),
+        ], 'migration');
         $this->publishes([
-            __DIR__ . '/lang' => base_path('resources/lang'),
-        ], 'IMLangs');
-        $this->checkAndCreateFolder()
-            ->loadViewsConfiguration()
-            ->registerTranslations();
-        /** bind Stuff * */
-        $this->app->bind('Joselfonseca\ImageManager\Interfaces\ImageRepositoryInterface',
-            'Joselfonseca\ImageManager\Repositories\ImageRepository');
-        $this->app->bind('Joselfonseca\ImageManager\Interfaces\ImageDbStorageInterface',
-            'Joselfonseca\ImageManager\Models\ImageManagerFiles');
-
+            __DIR__.'/../resources/lang' => base_path('resources/lang'),
+        ], 'Lang');
+        $this->loadViewsConfiguration()->registerTranslations();
         /** include the routes * */
-        require_once __DIR__ . '/routes.php';
+        require_once __DIR__.'/routes.php';
     }
 
     /**
@@ -87,44 +77,22 @@ class ImageManagerServiceProvider extends ServiceProvider
         return $this;
     }
 
-    private function checkAndCreateFolder()
-    {
-        /** Check for the folder * */
-        defined('IM_UPLOADPATH') or define('IM_UPLOADPATH', storage_path('file_manager'));
-        if (!is_dir(IM_UPLOADPATH)) {
-            mkdir(IM_UPLOADPATH);
-            chmod(IM_UPLOADPATH, 0777);
-        }
-
-        return $this;
-    }
-
     private function loadViewsConfiguration()
     {
-        $this->loadViewsFrom(__DIR__ . '/views/', 'image-manager');
+        $this->loadViewsFrom(__DIR__.'/../resources/views/', 'image-manager');
 
         return $this;
     }
 
     /**
      * Register the translations
+     *
      * @return $this
      */
     private function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/lang', 'ImageManager');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'ImageManager');
 
         return $this;
     }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return array();
-    }
-
 }

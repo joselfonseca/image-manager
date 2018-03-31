@@ -13,7 +13,7 @@
                     <h4>{{trans('ImageManager::image-manager.upload')}}</h4>
                     <div id='container-upload'>
                         <button id="pickfiles" class="btn btn-primary">{{trans('ImageManager::image-manager.select_files')}}</button>
-                        <button id="uploadfiles" class="btn btn-primary">{{trans('ImageManager::image-manager.upload_files')}}</button>
+                        <button id="uploadfiles" class="btn btn-default">{{trans('ImageManager::image-manager.upload_files')}}</button>
                         <div id="filelist"></div>
                     </div>
                 </div>

@@ -8,13 +8,13 @@ var uglify = require('gulp-uglify');
 
 var paths = {
     less: [
-        './assets/less/imagemanager.less'
+        './resources/assets/less/imagemanager.less'
     ],
     scripts: [
-    './assets/vendors/plupload/js/plupload.full.min.js',
-    './assets/vendors/colorbox/jquery.colorbox-min.js',
-    './assets/vendors/handlebars/handlebars.js',
-    './assets/js/image-manager.js'
+    './resources/assets/vendors/plupload/js/plupload.full.min.js',
+    './resources/assets/vendors/colorbox/jquery.colorbox-min.js',
+    './resources/assets/vendors/handlebars/handlebars.js',
+    './resources/assets/js/image-manager.js'
     ]
 };
 /**

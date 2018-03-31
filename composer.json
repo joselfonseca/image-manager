@@ -10,20 +10,11 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
-        "laracasts/commander": "~1.0",
-        "intervention/image": "2.*",
-        "intervention/imagecache": "2.*"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.1.x-dev"
-        }
+        "php": ">=7.1.0",
+        "intervention/image": "2.4.*",
+        "intervention/imagecache": "2.3.*"
     },
     "autoload": {
-        "classmap": [
-            "src/controllers"
-        ],
         "psr-4": {
             "Joselfonseca\\ImageManager\\": "src/"
         }

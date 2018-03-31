@@ -141,14 +141,19 @@
 
     $(document).on('click', '[data-action="delete-file"]', function() {
         var $this = $(this);
-        $.get($this.data('delete-url'), function(json) {
-            if (json.status === true) {
-                $('#imageManager_' + $this.data('file-id')).remove();
-            } else {
-                console.log(json.message);
-                
+        console.log('delete');
+        $.ajax({
+            dataType: 'JSON',
+            url: $this.data('delete-url'),
+            method: 'DELETE',
+            success: function(json) {
+                if (json.status === true) {
+                    $('#imageManager_' + $this.data('file-id')).remove();
+                } else {
+                    console.log(json.message);
+                }
             }
-        }, 'json');
+        });
     });
 
     $(document).on('click', '[data-action="removeFromMultiImage"]', function(){
@@ -157,3 +162,7 @@
     });
 
 })($, window);
+
+$(function () {
+    $('[data-toggle="popover"]').popover()
+});
