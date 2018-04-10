@@ -3,6 +3,7 @@
 namespace Joselfonseca\ImageManager;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Joselfonseca\ImageManager\Models\ImageManagerFiles;
 
 /**
  * Class ImageManager
@@ -20,7 +21,7 @@ class ImageManager
         $text = ($params['text']) ? $params['text'] : 'Select File';
         $class = ($params['class']) ? $params['class'] : 'btn btn-default';
         $field_name = (isset($params['field_name'])) ? $params['field_name'] : 'image';
-        $default = (isset($params['default'])) ? $params['default'] : \Input::old($params['field_name']);
+        $default = (isset($params['default'])) ? $params['default'] : request()->old($params['field_name']);
         if (! empty($default)) {
             $image = '<img src="'.route('showthumb', $default).'" class="imageManagerImage" />';
         } else {
@@ -38,15 +39,13 @@ class ImageManager
     {
         $params['field_name'] = (isset($params['field_name'])) ? $params['field_name'] : 'images';
         $params['default'] = (isset($params['default'])) ? $params['default'] : [];
-        $repository = app('Joselfonseca\ImageManager\Interfaces\ImageRepositoryInterface');
-        $params['default'] = array_map(function ($file) use ($repository) {
+        $params['default'] = array_map(function ($file) {
             try {
-                return $repository->getFileModel($file);
+                return ImageManagerFiles::where('id', $file)->first();
             } catch (ModelNotFoundException $e) {
                 return null;
             }
         }, $params['default']);
-
         return view('image-manager::image_manager_multi')->with('params', $params)->render();
     }
 }
