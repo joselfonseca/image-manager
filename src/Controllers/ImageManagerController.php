@@ -52,7 +52,7 @@ class ImageManagerController extends Controller
         }
     }
 
-    public function full($id, $width = 800, $height = null, $canvas = false)
+    public function full($id, $width = null, $height = null, $canvas = false)
     {
         try {
             $image = $this->model->findOrFail($id);
